@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio Fullstack Developer - Dark Edition
 
 Portfolio profesional artístico y dinámico para desarrollador fullstack y Project Manager, construido con React, TypeScript, Tailwind CSS y Motion (Framer Motion).
@@ -417,3 +418,7 @@ Desarrollado como portfolio profesional para demostrar habilidades fullstack en:
 **¿Preguntas?** Abre un issue o contacta directamente.
 
 **¿Te gustó el proyecto?** Dale una ⭐ en GitHub
+=======
+# portafolio-next
+My portfolio
+>>>>>>> fcaef07c415e66792c1c07ed7dcda1e7ac876ce2
