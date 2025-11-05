@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "motion/react";
-import { useInView } from "motion/react";
+import { motion, useInView } from "framer-motion"; // ✅ correcto
+
 import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
