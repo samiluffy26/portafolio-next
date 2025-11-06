@@ -27,7 +27,7 @@ export default function ProjectsCarousel() {
         "Project Manager & Backend Developer. Web platform for the Ministry of Education enabling educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes.",
       technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
       featured: true,
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/EduVisor.git",
       image: "/eduvisor.jpg",
     },
     {
@@ -35,7 +35,7 @@ export default function ProjectsCarousel() {
       description:
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
       technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/System-Facturacion.git",
       image: "/facturacion.jpg",
     },
     {
@@ -43,7 +43,7 @@ export default function ProjectsCarousel() {
       description:
         "Real estate, sales, loans, advisory and financial management platform.",
       technologies: ["Node", "Express", "MongoDB", "Mongoose", "HTML", "CSS"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/Sevane-Frontend.git",
       image: "/sevane.jpg",
     },
     {
@@ -51,7 +51,7 @@ export default function ProjectsCarousel() {
       description:
         "Restaurant management system with menu, orders, and inventory control.",
       technologies: ["React", "Vite", "Node", "Express", "MongoDB"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/leo124123/Yira-s-Gourmet.git",
       image: "/yiras.jpg",
     },
     {
@@ -83,8 +83,8 @@ export default function ProjectsCarousel() {
       description:
         "Modern personal portfolio showcasing projects and skills with animations.",
       technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-      githubUrl: "#",
-      liveUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/portafolio-next.git",
+      liveUrl: "https://samueltech.dev/",
       image: "https://images.unsplash.com/photo-1566915896913-549d796d2166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXZlbG9wZXIlMjB3b3Jrc3BhY2UlMjBjb2RlfGVufDF8fHx8MTc2MjEzNDE0OHww&ixlib=rb-4.1.0&q=80&w=1080",
     },
     {
@@ -92,7 +92,7 @@ export default function ProjectsCarousel() {
       description:
         "Donation platform to help children in need with transparent fund tracking.",
       technologies: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/JodrellPG/LasMargaritas.git",
       image: "/donate.jpg",
     },
     {
@@ -100,7 +100,7 @@ export default function ProjectsCarousel() {
       description:
         "Animal adoption and rescue platform connecting pets with loving homes.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/Proyectos-Adopcion-de-perritos.git",
       image: "/pets.png",
     },
     {
@@ -108,7 +108,7 @@ export default function ProjectsCarousel() {
       description:
         "Full-stack startup project with modern architecture and scalable solutions.",
       technologies: ["React", "Next.js", "Tailwind", "Node", "Nest", "MongoDB"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/brightmatterlab.git",
       image: "/startup.png",
     },
   ];

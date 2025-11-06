@@ -17,7 +17,7 @@ export default function Projects() {
 
         technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
       featured: true,
-      githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/EduVisor.git",
     },
     {
       title: "Sistema de facturación e inventario para vehículos",
