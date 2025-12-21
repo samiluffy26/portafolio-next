@@ -36,7 +36,7 @@ export default function ProjectsCarousel() {
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
       technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
       githubUrl: "https://github.com/samiluffy26/System-Facturacion.git",
-      image: "/facturacion.jpg",
+      image: "/facturacion1.png",
     },
     {
       title: "SeVaNe",
@@ -59,7 +59,7 @@ export default function ProjectsCarousel() {
       description:
         "Amazon/Uber style e-commerce platform for supermarkets with real-time inventory.",
       technologies: ["React", "Next.js", "Strapi", "Tailwind CSS"],
-      githubUrl: "#",
+     // githubUrl: "#",
       image: "/supermarket.png",
     },
     {
@@ -67,7 +67,7 @@ export default function ProjectsCarousel() {
       description:
         "Full-stack blogging platform with integrated music streaming features.",
       technologies: ["Node.js", "React", "MongoDB", "Nest.js", "Stripe", "Docker"],
-      githubUrl: "#",
+      // githubUrl: "#",
       image: "ecommerce.jpg",
     },
     {
@@ -75,7 +75,7 @@ export default function ProjectsCarousel() {
       description:
         "Social media platform with real-time updates, posts, and user interactions.",
       technologies: ["Node.js", "Mongoose", "MongoDB", "Socket.io"],
-      githubUrl: "#",
+      // githubUrl: "#",
       image: "/socialnet.png",
     },
     {
@@ -85,7 +85,7 @@ export default function ProjectsCarousel() {
       technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
       githubUrl: "https://github.com/samiluffy26/portafolio-next.git",
       liveUrl: "https://samueltech.dev/",
-      image: "https://images.unsplash.com/photo-1566915896913-549d796d2166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXZlbG9wZXIlMjB3b3Jrc3BhY2UlMjBjb2RlfGVufDF8fHx8MTc2MjEzNDE0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/portafolio.png",
     },
     {
       title: "Donación para niños necesitados",
@@ -109,7 +109,16 @@ export default function ProjectsCarousel() {
         "Full-stack startup project with modern architecture and scalable solutions.",
       technologies: ["React", "Next.js", "Tailwind", "Node", "Nest", "MongoDB"],
       githubUrl: "https://github.com/samiluffy26/brightmatterlab.git",
+      liveUrl: "https://startup.brightmatter.lat",
       image: "/startup.png",
+    },
+    {
+      title: "Plataforma para empresa de Transporte de pacientes y servicios médicos",
+      description:
+        "Full-stack the innovative platform for a patient transport and medical services company, featuring real-time tracking, scheduling, and management tools to enhance operational efficiency and patient care.",
+      technologies: ["React", "Astro", "Tailwind", "Node", "Express", "MongoDB", "Stripe"],
+      liveUrl: "https://www.ontheclocktrans.com/",
+      image: "/ontheclock.png",
     },
   ];
 
