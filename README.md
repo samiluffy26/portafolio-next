@@ -403,7 +403,7 @@ const handleSubmit = async (e) => {
 
 MIT License - Libre para uso personal y comercial
 
-## 👨‍💻 Autor
+## 👨‍💻 Autor: Samuel Isaias Guance Santi
 
 Desarrollado como portfolio profesional para demostrar habilidades fullstack en:
 - React/Next.js
@@ -421,4 +421,3 @@ Desarrollado como portfolio profesional para demostrar habilidades fullstack en:
 =======
 # portafolio-next
 My portfolio
->>>>>>> fcaef07c415e66792c1c07ed7dcda1e7ac876ce2
