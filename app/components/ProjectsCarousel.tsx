@@ -43,7 +43,7 @@ export default function ProjectsCarousel() {
       description:
         "Real estate, sales, loans, advisory and financial management platform.",
       technologies: ["Node", "Express", "MongoDB", "Mongoose", "HTML", "CSS"],
-      githubUrl: "https://github.com/samiluffy26/Sevane-Frontend.git",
+      liveUrl: "https://sevane.org",
       image: "/sevane.jpg",
     },
     {
@@ -51,7 +51,7 @@ export default function ProjectsCarousel() {
       description:
         "Restaurant management system with menu, orders, and inventory control.",
       technologies: ["React", "Vite", "Node", "Express", "MongoDB"],
-      githubUrl: "https://github.com/leo124123/Yira-s-Gourmet.git",
+      liveUrl: "https://yiras-gourmet.brightmatter.lat",
       image: "/yiras.jpg",
     },
     {
@@ -117,9 +117,17 @@ export default function ProjectsCarousel() {
       description:
         "Full-stack the innovative platform for a patient transport and medical services company, featuring real-time tracking, scheduling, and management tools to enhance operational efficiency and patient care.",
       technologies: ["React", "Astro", "Tailwind", "Node", "Express", "MongoDB", "Stripe"],
-      liveUrl: "https://www.ontheclocktrans.com/",
+      liveUrl: "https://www.ontheclocktrans.com",
       image: "/ontheclock.png",
     },
+    {
+       title: "Scada",
+      description:
+        "LandingPage para Empresa de Inmobiliaria en República Dominicana.",
+      technologies: ["React", "Vite", "Tailwind", "Node"],
+      liveUrl: "https://www.scadadr.com",
+      image: "/scada.png",
+    }
   ];
 
   const nextProject = () => {
