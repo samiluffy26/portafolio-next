@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import ProjectsCarousel from '@/components/ProjectsCarousel';
+import Certificates from '@/components/Certificates';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -16,6 +17,7 @@ export default function HomePage() {
       <About />
       <Skills />
       <ProjectsCarousel />
+      <Certificates />
       <Contact />
       <Footer />
     </main>

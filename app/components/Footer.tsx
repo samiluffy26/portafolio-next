@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-black border-t border-white/10 text-white py-12 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#10B981]/5 via-transparent to-transparent" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4">
           {/* Logo/Brand */}
@@ -35,8 +35,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-white/70 flex items-center gap-2"
           >
-            © {currentYear} Desarrollado con{" "}
-            <Heart size={16} className="text-[#10B981] fill-[#10B981]" /> por Samuel Guance.
+            © {currentYear} Desarrollado con amor por Samuel Guance.
           </motion.p>
 
           {/* Tech Stack */}
