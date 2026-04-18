@@ -117,6 +117,21 @@ export default function Projects() {
       ],
       githubUrl: "#",
     },
+    {
+      title: "SanXoft Page",
+      description:
+        "Full-stack startup project with modern architecture and scalable solutions.",
+      image: "/sanxoft.jpg",
+      technologies: [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Node",
+        "Nest",
+        "MongoDB",
+      ],
+      githubUrl: "#",
+    },
   ];
 
   return (

@@ -29,7 +29,6 @@ export default function ProjectsCarousel() {
         "Project Manager & Backend Developer. Web platform for the Ministry of Education enabling educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes.",
       technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
       featured: true,
-      githubUrl: "https://github.com/samiluffy26/EduVisor.git",
       image: "/eduvisor.jpg",
     },
     {
@@ -37,7 +36,6 @@ export default function ProjectsCarousel() {
       description:
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
       technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
-      githubUrl: "https://github.com/samiluffy26/System-Facturacion.git",
       image: "/facturacion1.png",
     },
     {
@@ -68,15 +66,15 @@ export default function ProjectsCarousel() {
       description:
         "Full-stack blogging platform with integrated music streaming features.",
       technologies: ["Node.js", "React", "MongoDB", "Nest.js", "Stripe", "Docker"],
-      // githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/Ecommerce-BlogArtist",
       image: "ecommerce.jpg",
     },
     {
-      title: "Twitter-like Social App",
+      title: "Social Media Platform",
       description:
         "Social media platform with real-time updates, posts, and user interactions.",
       technologies: ["Node.js", "Mongoose", "MongoDB", "Socket.io"],
-      // githubUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/Red-Social",
       image: "/socialnet.png",
     },
     {
@@ -128,7 +126,56 @@ export default function ProjectsCarousel() {
       technologies: ["React", "Vite", "Tailwind", "Node"],
       liveUrl: "https://www.scadadr.com",
       image: "/scada.png",
-    }
+    },
+    {
+      title: "SanXoft Page",
+      description:
+        "Full-stack startup project with modern architecture and scalable solutions.",
+      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
+      liveUrl: "https://www.sanxoft.lat",
+      image: "/sanxoft.png",
+    },
+    {
+      title: "Barber Sanx",
+      description:
+        "SAAS platform for a Dominican Republic barber shop, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
+      technologies: ["React Native", "Angular", "Tailwind", "Node", "Nest.js", "Mongo", "Stripe", "Docker", "Kubernetes", "Azure", "Supabase", "Resend"],
+      liveUrl: "https://www.barbersanx.online",
+      image: "/barbersanx.png",
+    },
+    {
+      title: "HandsMachines",
+      description:
+        "HandsMachines is an open-source software solution designed to facilitate the learning and practice of American Sign Language (ASL) through advanced computer vision and machine learning techniques. The platform enables real-time gesture detection, providing immediate feedback to the user and allowing customization of the AI ​​model based on the individual physical characteristics of each hand.",
+      technologies: ["React", "Vite", "MediaPipe Hands", "ONNX Runtime Web", "Tailwind", "Mongo", "FastAPI", "Scikit-Learn", "Skl2onnx", "Uvicorn"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/samiluffy26/HandsMachines",
+      image: "/handsmachines.png",
+    },
+    {
+      title: "Sami Netflix",
+      description:
+        "A modern streaming platform for showcasing movies and TV shows, built with the latest web technologies.",
+      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
+      githubUrl: "https://github.com/samiluffy26/SamiNET",
+      image: "/saminetflix.png",
+    },
+    {
+      title: "Spa-FullStack",
+      description:
+        "A full-stack Single Page Application (SPA) for a spa and wellness center, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
+      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
+      githubUrl: "https://github.com/samiluffy26/Spa-Fullstack",
+      image: "/spa-Fullstack.png",
+    },
+    {
+      title: "Blazor Spa FullStack",
+      description:
+        " A full-stack Single Page Application (SPA) for a spa and wellness center, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
+      technologies: ["Entity Framework", "ASP.NET Core", "Blazor", ".NET", "MongoDB"],
+      githubUrl: "https://github.com/samiluffy26/Spa-Blazor",
+      image: "/spa-Fullstack.png",
+    },
   ];
 
   const nextProject = () => {
