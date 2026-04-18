@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-visible pt-20"
     >
       {/* Matrix-style falling code */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -125,6 +125,26 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
+              className="block lg:hidden mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <div className="bg-black/40 backdrop-blur-md border border-[#10B981]/30 rounded-2xl p-4">
+                <div className="flex gap-2 mb-3">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+                <div className="font-mono text-xs text-[#10B981] space-y-1">
+                  {codeLines.map((line, i) => (
+                    <div key={i}>{line}</div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1 }}
@@ -187,7 +207,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative"
+            className="relative overflow-visible"
           >
             {/* Glowing ring */}
             <motion.div
@@ -203,13 +223,13 @@ export default function Hero() {
             />
 
             {/* Photo container */}
-            <div className="relative aspect-square max-w-md mx-auto">
+            <div className="relative aspect-square w-full max-w-[92vw] sm:max-w-[320px] md:max-w-md mx-auto min-h-[320px] overflow-visible">
               <div className="absolute inset-0 bg-gradient-to-br from-[#10B981] via-[#8B5CF6] to-[#6D28D9] rounded-full blur-2xl opacity-40" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#10B981]/30">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#10B981]/30 bg-[#020617]">
                 <ImageWithFallback
                   src="/me.jpg"
                   alt="Fullstack Developer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain object-center"
                 />
               </div>
 
@@ -217,7 +237,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 bg-gradient-to-r from-[#10B981] to-[#059669] px-4 py-2 rounded-full shadow-lg"
+                className="absolute top-0 right-0 sm:-top-4 sm:-right-4 z-10 bg-gradient-to-r from-[#10B981] to-[#059669] px-4 py-2 rounded-full shadow-lg"
               >
                 <span className="text-black">⚡ Fast</span>
               </motion.div>
@@ -225,7 +245,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                className="absolute -bottom-4 -left-4 bg-gradient-to-r from-[#6D28D9] to-[#5B21B6] px-4 py-2 rounded-full shadow-lg"
+                className="absolute bottom-0 left-0 sm:-bottom-4 sm:-left-4 z-10 bg-gradient-to-r from-[#6D28D9] to-[#5B21B6] px-4 py-2 rounded-full shadow-lg"
               >
                 <span className="text-white">🎯 Precise</span>
               </motion.div>
