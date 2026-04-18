@@ -7,8 +7,10 @@ import { Button } from "./ui/button";
 import { Mail, Github, Linkedin, Send, Instagram, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Contact() {
+  const { locale, t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
@@ -22,25 +24,25 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const serviceTypes = [
-    { value: "", label: "Selecciona un servicio" },
-    { value: "web-development", label: "🌐 Desarrollo Web" },
-    { value: "mobile-app", label: "📱 Aplicación Móvil" },
-    { value: "ecommerce", label: "🛒 E-commerce" },
-    { value: "ui-ux-design", label: "🎨 Diseño UI/UX" },
-    { value: "api-backend", label: "⚙️ API/Backend" },
-    { value: "consulting", label: "💼 Consultoría" },
-    { value: "maintenance", label: "🔧 Mantenimiento" },
-    { value: "other", label: "✨ Otro" },
+    { value: "", label: t.contact.selectService },
+    { value: "web-development", label: t.contact.serviceOptions.webDevelopment },
+    { value: "mobile-app", label: t.contact.serviceOptions.mobileApp },
+    { value: "ecommerce", label: t.contact.serviceOptions.ecommerce },
+    { value: "ui-ux-design", label: t.contact.serviceOptions.uiUxDesign },
+    { value: "api-backend", label: t.contact.serviceOptions.apiBackend },
+    { value: "consulting", label: t.contact.serviceOptions.consulting },
+    { value: "maintenance", label: t.contact.serviceOptions.maintenance },
+    { value: "other", label: t.contact.serviceOptions.other },
   ];
 
   const budgetRanges = [
-    { value: "", label: "Presupuesto (opcional)" },
-    { value: "under-1000", label: "Menos de $1,000" },
-    { value: "1000-5000", label: "$1,000 - $5,000" },
-    { value: "5000-10000", label: "$5,000 - $10,000" },
-    { value: "10000-25000", label: "$10,000 - $25,000" },
-    { value: "25000-plus", label: "Más de $25,000" },
-    { value: "not-sure", label: "No estoy seguro" },
+    { value: "", label: t.contact.budget },
+    { value: "under-1000", label: t.contact.budgetOptions.under1000 },
+    { value: "1000-5000", label: t.contact.budgetOptions["1000to5000"] },
+    { value: "5000-10000", label: t.contact.budgetOptions["5000to10000"] },
+    { value: "10000-25000", label: t.contact.budgetOptions["10000to25000"] },
+    { value: "25000-plus", label: t.contact.budgetOptions["25000plus"] },
+    { value: "not-sure", label: t.contact.budgetOptions.notSure },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,35 +50,32 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const selectedService = serviceTypes.find(s => s.value === formData.serviceType)?.label || "No especificado";
-      const selectedBudget = budgetRanges.find(b => b.value === formData.budget)?.label || "No especificado";
+      const selectedService = serviceTypes.find((s) => s.value === formData.serviceType)?.label || t.contact.notSpecified;
+      const selectedBudget = budgetRanges.find((b) => b.value === formData.budget)?.label || t.contact.notSpecified;
 
-      // Formatear el mensaje para que llegue organizado
       const formattedMessage = `
 ═══════════════════════════════════════
-📋 NUEVA SOLICITUD DE CONTACTO
+${t.contact.clientInfoLabel}
 ═══════════════════════════════════════
 
-👤 INFORMACIÓN DEL CLIENTE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Nombre: ${formData.name}
-Email: ${formData.email}
-Teléfono: ${formData.phone || "No proporcionado"}
+${t.contact.name}: ${formData.name}
+${t.contact.email}: ${formData.email}
+${t.contact.phone}: ${formData.phone || t.contact.notSpecified}
 
-💼 DETALLES DEL PROYECTO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Tipo de Servicio: ${selectedService}
-Presupuesto: ${selectedBudget}
+${t.contact.projectDetailsLabel}
+═══════════════════════════════════════
+${t.contact.serviceType}: ${selectedService}
+${t.contact.budget}: ${selectedBudget}
 
-💬 MENSAJE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${t.contact.messageLabel}
+═══════════════════════════════════════
 ${formData.message}
 
 ═══════════════════════════════════════
-📅 Fecha: ${new Date().toLocaleString('es-ES', { 
-  dateStyle: 'full', 
-  timeStyle: 'short' 
-})}
+${t.contact.dateLabel}: ${new Date().toLocaleString(locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      })}
 ═══════════════════════════════════════
       `;
 
@@ -93,13 +92,13 @@ ${formData.message}
           budget: selectedBudget,
           message: formData.message,
           formattedMessage: formattedMessage,
-          _subject: `🚀 Nueva Solicitud: ${selectedService} - ${formData.name}`,
+          _subject: `New Contact: ${selectedService} - ${formData.name}`,
           _replyto: formData.email,
         }),
       });
 
       if (response.ok) {
-        toast.success("✅ ¡Mensaje enviado exitosamente! Te contactaré pronto.");
+        toast.success(t.contact.formSuccess);
         setFormData({ 
           name: "", 
           email: "", 
@@ -110,11 +109,11 @@ ${formData.message}
         });
       } else {
         const errorData = await response.json();
-        toast.error(`❌ Error: ${errorData.error || "No se pudo enviar el mensaje"}`);
+        toast.error(`Error: ${errorData.error || t.contact.formError}`);
       }
     } catch (error) {
-      console.error("Error detallado:", error);
-      toast.error("🌐 Error de conexión. Por favor, intenta más tarde.");
+      console.error("Error details:", error);
+      toast.error(t.contact.formConnectionError);
     } finally {
       setIsSubmitting(false);
     }
@@ -171,10 +170,10 @@ ${formData.message}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Contacto</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">{t.contact.title}</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
           <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente? ¡Hablemos!
+            {t.contact.subtitle}
           </p>
         </motion.div>
 
@@ -189,7 +188,7 @@ ${formData.message}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-white mb-2 font-medium">
-                  Nombre
+                  {t.contact.name}
                 </label>
                 <Input
                   id="name"
@@ -200,13 +199,13 @@ ${formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full bg-white/5 border-white/20 text-white focus:border-[#10B981] disabled:opacity-50"
-                  placeholder="Tu nombre"
+                  placeholder={t.contact.namePlaceholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-white mb-2 font-medium">
-                  Email
+                  {t.contact.email}
                 </label>
                 <Input
                   id="email"
@@ -217,13 +216,13 @@ ${formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full bg-white/5 border-white/20 text-white focus:border-[#10B981] disabled:opacity-50"
-                  placeholder="tu@email.com"
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="phone" className="block text-white mb-2 font-medium">
-                  Teléfono / WhatsApp
+                  {t.contact.phone}
                 </label>
                 <Input
                   id="phone"
@@ -233,13 +232,13 @@ ${formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full bg-white/5 border-white/20 text-white focus:border-[#10B981] disabled:opacity-50"
-                  placeholder="+1 (809) 123-4567"
+                  placeholder={t.contact.phonePlaceholder}
                 />
               </div>
 
               <div>
                 <label htmlFor="serviceType" className="block text-white mb-2 font-medium">
-                  Tipo de Servicio
+                  {t.contact.serviceType}
                 </label>
                 <select
                   id="serviceType"
@@ -260,7 +259,7 @@ ${formData.message}
 
               <div>
                 <label htmlFor="budget" className="block text-white mb-2 font-medium">
-                  Presupuesto (Opcional)
+                  {t.contact.budget}
                 </label>
                 <select
                   id="budget"
@@ -280,7 +279,7 @@ ${formData.message}
 
               <div>
                 <label htmlFor="message" className="block text-white mb-2 font-medium">
-                  Mensaje
+                  {t.contact.message}
                 </label>
                 <Textarea
                   id="message"
@@ -290,7 +289,7 @@ ${formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full min-h-[150px] bg-white/5 border-white/20 text-white focus:border-[#10B981] disabled:opacity-50"
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  placeholder={t.contact.messagePlaceholder}
                 />
               </div>
 
@@ -303,12 +302,12 @@ ${formData.message}
                   {isSubmitting ? (
                     <>
                       <Loader2 size={20} className="mr-2 animate-spin" />
-                      Enviando...
+                      {t.contact.sending}
                     </>
                   ) : (
                     <>
                       <Send size={20} className="mr-2" />
-                      Enviar Mensaje
+                      {t.contact.sendMessage}
                     </>
                   )}
                 </Button>
@@ -325,11 +324,10 @@ ${formData.message}
           >
             <div className="bg-gradient-to-br from-[#6D28D9]/20 to-[#10B981]/20 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
               <h3 className="text-2xl font-bold text-white mb-6">
-                Conecta conmigo
+                {t.contact.connectTitle}
               </h3>
               <p className="text-white/70 mb-8">
-                Siempre estoy abierto a discutir nuevos proyectos, ideas
-                creativas o oportunidades para ser parte de tus visiones.
+                {t.contact.connectText}
               </p>
 
               <div className="space-y-4">

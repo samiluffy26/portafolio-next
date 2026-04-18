@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface ProjectCardProps {
   title: string;
@@ -11,7 +12,7 @@ interface ProjectCardProps {
   featured?: boolean;
   githubUrl?: string;
   liveUrl?: string;
-  image?: string; // ← propiedad nueva
+  image?: string;
 }
 
 export default function ProjectCard({
@@ -23,6 +24,8 @@ export default function ProjectCard({
   liveUrl,
   image,
 }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       whileHover={{
@@ -42,12 +45,12 @@ export default function ProjectCard({
         {featured && (
           <div className="absolute top-4 right-4">
             <Badge className="bg-gradient-to-r from-[#6D28D9] to-[#10B981] text-white border-0">
-              Destacado
+              {t.projects.featured}
             </Badge>
           </div>
         )}
 
-        {/* Imagen del proyecto */}
+        {/* Project image */}
         {image && (
           <div className="mb-4 rounded-xl overflow-hidden">
             <Image
@@ -60,13 +63,13 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* Título */}
+        {/* Title */}
         <h3 className="text-[#0F172A] mb-3 pr-20">{title}</h3>
 
-        {/* Descripción */}
+        {/* Description */}
         <p className="text-[#0F172A]/70 mb-6 flex-grow">{description}</p>
 
-        {/* Tecnologías */}
+        {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-6">
           {technologies.slice(0, 5).map((tech) => (
             <Badge
@@ -84,7 +87,7 @@ export default function ProjectCard({
           )}
         </div>
 
-        {/* Enlaces */}
+        {/* Links */}
         <div className="flex gap-4">
           {githubUrl && (
             <motion.a
@@ -96,7 +99,7 @@ export default function ProjectCard({
               className="flex items-center gap-2 text-[#0F172A] hover:text-[#6D28D9] transition-colors"
             >
               <Github size={20} />
-              <span>Code</span>
+              <span>{t.projects.code}</span>
             </motion.a>
           )}
           {liveUrl && (
@@ -109,7 +112,7 @@ export default function ProjectCard({
               className="flex items-center gap-2 text-[#0F172A] hover:text-[#10B981] transition-colors"
             >
               <ExternalLink size={20} />
-              <span>Live</span>
+              <span>{t.projects.demo}</span>
             </motion.a>
           )}
         </div>

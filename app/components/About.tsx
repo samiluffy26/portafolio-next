@@ -2,28 +2,18 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Database, Globe } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function About() {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const features = [
-    {
-      icon: Code2,
-      title: "Frontend Development",
-      description: "React, Next.js, React Native, Angular, Blazor",
-    },
-    {
-      icon: Database,
-      title: "Backend & Database",
-      description: "Node.js, .NET, MongoDB, SQL Server, Entity Framework",
-    },
-    {
-      icon: Globe,
-      title: "Project Management",
-      description: "Leading EduVisor project for Ministry of Education",
-    },
-  ];
+  const featureIcons = [Code2, Database, Globe];
+  const features = t.about.features.map((feature, index) => ({
+    icon: featureIcons[index] ?? Globe,
+    ...feature,
+  }));
 
   return (
     <section
@@ -46,7 +36,7 @@ export default function About() {
             initial={{ scale: 0.9 }}
             animate={isInView ? { scale: 1 } : {}}
           >
-            Sobre mí
+            {t.about.title}
           </motion.h2>
           <motion.div
             className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full"
@@ -111,7 +101,7 @@ export default function About() {
           />
           
           <p className="text-white/80 leading-relaxed relative">
-            I am a junior fullstack developer and Project Manager of the EduVisor project, a web platform for the Ministry of Education that enables educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes and ensuring the accuracy of information. In this project, I am responsible for the backend and database, implementing scalable and secure solutions. My core technical skills include React, React Native, Node.js, SQL, C#, .NET, JavaScript, Blazor, ASP.NET, MongoDB, Mongoose, version control with Git/GitHub, and API testing with Postman.
+            {t.about.paragraph}
           </p>
         </motion.div>
       </div>

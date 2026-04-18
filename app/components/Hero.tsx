@@ -1,9 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowDown, Code2, Terminal, Sparkles } from "lucide-react";
+import { ArrowDown, Code2, Terminal, Sparkles, Zap, Target } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Hero() {
+  const { t } = useLanguage();
   const codeLines = [
     "const developer = {",
     "  name: 'Fullstack Dev',",
@@ -92,7 +94,7 @@ export default function Hero() {
               transition={{ delay: 0.3, type: "spring" }}
             >
               <Sparkles size={16} className="text-[#10B981]" />
-              <span className="text-[#10B981]">Available for work</span>
+              <span className="text-[#10B981]">{t.hero.available}</span>
             </motion.div>
 
             <motion.h1
@@ -101,12 +103,12 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <span className="block text-white/60 mb-2">Hi, I'm a Samuel Isaias Guance Santi</span>
+              <span className="block text-white/60 mb-2">{t.hero.greeting}</span>
               <span className="block bg-gradient-to-r from-[#10B981] via-[#8B5CF6] to-[#6D28D9] bg-clip-text text-transparent">
-                Fullstack Developer
+                {t.hero.titlePrimary}
               </span>
               <span className="block bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#10B981] bg-clip-text text-transparent">
-                & Project Manager
+                {t.hero.titleSecondary}
               </span>
             </motion.h1>
 
@@ -116,12 +118,7 @@ export default function Hero() {
               transition={{ delay: 0.8 }}
               className="text-white/70 mb-8 leading-relaxed"
             >
-              I am a junior fullstack developer and Project Manager of the{" "}
-              <span className="text-[#10B981] font-semibold">EduVisor</span> project, 
-              a web platform for the Ministry of Education. Specialized in building 
-              scalable solutions with <span className="text-[#6D28D9]">React</span>,{" "}
-              <span className="text-[#6D28D9]">Node.js</span>, and{" "}
-              <span className="text-[#6D28D9]">.NET</span>.
+              {t.hero.description}
             </motion.p>
 
             <motion.div
@@ -158,7 +155,7 @@ export default function Hero() {
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Code2 size={20} />
-                  Ver Proyectos
+                  {t.hero.viewProjects}
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-white"
@@ -176,7 +173,7 @@ export default function Hero() {
                 className="px-8 py-4 rounded-full border-2 border-[#6D28D9] text-white hover:bg-[#6D28D9]/20 transition-all flex items-center gap-2"
               >
                 <Terminal size={20} />
-                Contactar
+                {t.hero.contact}
               </motion.a>
             </motion.div>
 
@@ -239,7 +236,10 @@ export default function Hero() {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute top-0 right-0 sm:-top-4 sm:-right-4 z-10 bg-gradient-to-r from-[#10B981] to-[#059669] px-4 py-2 rounded-full shadow-lg"
               >
-                <span className="text-black">⚡ Fast</span>
+                <span className="flex items-center gap-2 text-black">
+                <Zap size={16} />
+                {t.hero.fast}
+              </span>
               </motion.div>
 
               <motion.div
@@ -247,7 +247,10 @@ export default function Hero() {
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 className="absolute bottom-0 left-0 sm:-bottom-4 sm:-left-4 z-10 bg-gradient-to-r from-[#6D28D9] to-[#5B21B6] px-4 py-2 rounded-full shadow-lg"
               >
-                <span className="text-white">🎯 Precise</span>
+                <span className="flex items-center gap-2 text-white">
+                <Target size={16} />
+                {t.hero.precise}
+              </span>
               </motion.div>
             </div>
           </motion.div>

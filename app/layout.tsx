@@ -4,12 +4,12 @@ import { Toaster } from 'sonner';
 
 export const metadata = {
   title: 'Samuel Portfolio',
-  description: 'Landing page profesional con animaciones, proyectos y contacto',
+  description: 'Professional landing page with animations, projects, and contact.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className="bg-black text-white overflow-x-hidden">
         {children}
         <Toaster position="top-right" />

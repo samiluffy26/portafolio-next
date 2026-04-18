@@ -1,9 +1,10 @@
 "use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Star } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface Project {
   title: string;
@@ -19,6 +20,7 @@ export default function ProjectsCarousel() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLanguage();
 
   const projects: Project[] = [
     {
@@ -31,7 +33,7 @@ export default function ProjectsCarousel() {
       image: "/eduvisor.jpg",
     },
     {
-      title: "Sistema de facturación e inventario",
+      title: "Billing & Inventory System",
       description:
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
       technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
@@ -55,11 +57,10 @@ export default function ProjectsCarousel() {
       image: "/yiras.jpg",
     },
     {
-      title: "E-commerce para supermercados",
+      title: "Supermarket E-commerce",
       description:
         "Amazon/Uber style e-commerce platform for supermarkets with real-time inventory.",
       technologies: ["React", "Next.js", "Strapi", "Tailwind CSS"],
-     // githubUrl: "#",
       image: "/supermarket.png",
     },
     {
@@ -79,7 +80,7 @@ export default function ProjectsCarousel() {
       image: "/socialnet.png",
     },
     {
-      title: "Portafolio personal",
+      title: "Personal Portfolio",
       description:
         "Modern personal portfolio showcasing projects and skills with animations.",
       technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
@@ -88,7 +89,7 @@ export default function ProjectsCarousel() {
       image: "/portafolio.png",
     },
     {
-      title: "Donación para niños necesitados",
+      title: "Children Donation Platform",
       description:
         "Donation platform to help children in need with transparent fund tracking.",
       technologies: ["HTML", "CSS", "JavaScript"],
@@ -96,7 +97,7 @@ export default function ProjectsCarousel() {
       image: "/donate.jpg",
     },
     {
-      title: "Adopción y rescate de animales",
+      title: "Pet Adoption & Rescue",
       description:
         "Animal adoption and rescue platform connecting pets with loving homes.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP"],
@@ -104,7 +105,7 @@ export default function ProjectsCarousel() {
       image: "/pets.png",
     },
     {
-      title: "Startup Personal",
+      title: "Personal Startup",
       description:
         "Full-stack startup project with modern architecture and scalable solutions.",
       technologies: ["React", "Next.js", "Tailwind", "Node", "Nest", "MongoDB"],
@@ -113,17 +114,17 @@ export default function ProjectsCarousel() {
       image: "/startup.png",
     },
     {
-      title: "Plataforma para empresa de Transporte de pacientes y servicios médicos",
+      title: "Patient Transport Platform",
       description:
-        "Full-stack the innovative platform for a patient transport and medical services company, featuring real-time tracking, scheduling, and management tools to enhance operational efficiency and patient care.",
+        "Full-stack platform for a patient transport and medical services company, featuring real-time tracking, scheduling, and management tools to enhance operational efficiency and patient care.",
       technologies: ["React", "Astro", "Tailwind", "Node", "Express", "MongoDB", "Stripe"],
       liveUrl: "https://www.ontheclocktrans.com",
       image: "/ontheclock.png",
     },
     {
-       title: "Scada",
+      title: "Scada",
       description:
-        "LandingPage para Empresa de Inmobiliaria en República Dominicana.",
+        "Landing page for a Dominican Republic real estate company.",
       technologies: ["React", "Vite", "Tailwind", "Node"],
       liveUrl: "https://www.scadadr.com",
       image: "/scada.png",
@@ -153,11 +154,11 @@ export default function ProjectsCarousel() {
           className="text-center mb-16"
         >
           <h2 className="text-white mb-4">
-            Proyectos Destacados
+            {t.projects.title}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
           <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            Explora mi trabajo - {projects.length} proyectos y contando
+            {t.projects.description.replace("{count}", String(projects.length))}
           </p>
         </motion.div>
 
@@ -193,8 +194,9 @@ export default function ProjectsCarousel() {
                         animate={{ scale: 1 }}
                         className="absolute top-4 right-4"
                       >
-                        <Badge className="bg-gradient-to-r from-[#10B981] to-[#059669] text-black border-0">
-                          ⭐ Destacado
+                        <Badge className="bg-gradient-to-r from-[#10B981] to-[#059669] text-black border-0 flex items-center gap-2">
+                          <Star size={16} />
+                          {t.projects.featured}
                         </Badge>
                       </motion.div>
                     )}

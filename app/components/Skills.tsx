@@ -2,8 +2,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Badge } from "./ui/badge";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Skills() {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -84,11 +86,11 @@ export default function Skills() {
             }}
             transition={{ duration: 5, repeat: Infinity }}
           >
-            Tech Stack
+            {t.skills.title}
           </motion.h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
           <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            Tecnologías y herramientas con las que trabajo
+            {t.skills.subtitle}
           </p>
         </motion.div>
 
@@ -158,7 +160,7 @@ export default function Skills() {
               >
                 ✨
               </motion.span>
-              Tecnologías favoritas destacadas con gradiente
+              {t.skills.favorite}
             </motion.p>
           </motion.div>
         </motion.div>

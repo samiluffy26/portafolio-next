@@ -2,16 +2,18 @@
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
 
   const navItems = [
-    { label: "Inicio", href: "#hero" },
-    { label: "Sobre mí", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Proyectos", href: "#projects" },
-    { label: "Contacto", href: "#contact" },
+    { label: t.nav.home, href: "#hero" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.contact, href: "#contact" },
   ];
 
   return (
@@ -78,6 +80,14 @@ export default function Header() {
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.div>
           </motion.button>
+
+          <button
+            onClick={() => setLocale(locale === "en" ? "es" : "en")}
+            className="hidden md:inline-flex items-center justify-center rounded-full border border-white/10 px-4 py-2 text-white text-sm hover:border-[#10B981] hover:text-[#10B981] transition-colors"
+            aria-label="Switch language"
+          >
+            {locale === "en" ? "ES" : "EN"}
+          </button>
         </div>
 
         {/* Mobile Menu */}
@@ -101,6 +111,15 @@ export default function Header() {
                 {item.label}
               </motion.a>
             ))}
+            <button
+              onClick={() => {
+                setLocale(locale === "en" ? "es" : "en");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left text-white/70 hover:text-[#10B981] px-4 py-3 rounded-lg border border-white/10 hover:bg-white/5 transition-colors"
+            >
+              {locale === "en" ? "ES" : "EN"}
+            </button>
           </motion.div>
         )}
       </nav>

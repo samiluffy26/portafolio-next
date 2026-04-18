@@ -1,10 +1,11 @@
 "use client";
-import { motion, useInView } from "framer-motion"; // ✅ correcto
-
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Projects() {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -13,17 +14,16 @@ export default function Projects() {
       title: "EduVisor",
       description:
         "Project Manager & Backend Developer. Web platform for the Ministry of Education enabling educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes.",
-      image: "/eduvisor.jpg", // ← ruta desde /public
-
-        technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
+      image: "/eduvisor.jpg",
+      technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
       featured: true,
       githubUrl: "https://github.com/samiluffy26/EduVisor.git",
     },
     {
-      title: "Sistema de facturación e inventario para vehículos",
+      title: "Vehicle Billing and Inventory System",
       description:
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
-        image: "/facturacion.jpg",
+      image: "/facturacion.jpg",
       technologies: [
         "React",
         ".NET Core",
@@ -37,7 +37,7 @@ export default function Projects() {
       title: "SeVaNe",
       description:
         "Real estate, sales, loans, advisory and financial management platform.",
-        image: "/sevane.jpg",
+      image: "/sevane.jpg",
       technologies: [
         "Node",
         "Express",
@@ -53,19 +53,19 @@ export default function Projects() {
       title: "Yira's Gourmet",
       description:
         "Restaurant management system with menu, orders, and inventory control.",
-        image: "/yiras.jpg",
+      image: "/yiras.jpg",
       technologies: ["React", "Vite", "Node", "Express", "MongoDB", "Mongoose"],
       githubUrl: "#",
     },
     {
-      title: "E-commerce para supermercados",
+      title: "Supermarket E-commerce Platform",
       description:
-        "Amazon/Uber style e-commerce platform for supermarkets with real-time inventory.",
+        "Amazon/Uber-style e-commerce platform for supermarkets with real-time inventory.",
       technologies: ["React", "Next.js", "Strapi", "Tailwind CSS"],
       githubUrl: "#",
     },
     {
-      title: "Portafolio personal",
+      title: "Personal Portfolio",
       description:
         "Modern personal portfolio showcasing projects and skills with animations.",
       technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
@@ -76,7 +76,7 @@ export default function Projects() {
       title: "Blog & Music App",
       description:
         "Full-stack blogging platform with integrated music streaming features.",
-        image: "/ecommerce.jpg",
+      image: "/ecommerce.jpg",
       technologies: ["Node.js", "Mongoose", "MongoDB", "Express"],
       githubUrl: "#",
     },
@@ -88,25 +88,25 @@ export default function Projects() {
       githubUrl: "#",
     },
     {
-      title: "Donación para niños necesitados",
+      title: "Donation Platform for Children in Need",
       description:
         "Donation platform to help children in need with transparent fund tracking.",
-        image: "/donate.jpg",
+      image: "/donate.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
       githubUrl: "#",
     },
     {
-      title: "Adopción y rescate de animales",
+      title: "Animal Adoption and Rescue",
       description:
         "Animal adoption and rescue platform connecting pets with loving homes.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP"],
       githubUrl: "#",
     },
     {
-      title: "Startup Personal",
+      title: "Personal Startup",
       description:
         "Full-stack startup project with modern architecture and scalable solutions.",
-        image: "/startup.jpg",
+      image: "/startup.jpg",
       technologies: [
         "React",
         "Next.js",
@@ -128,12 +128,10 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-[#0F172A] mb-4">
-            Proyectos
-          </h2>
+          <h2 className="text-[#0F172A] mb-4">{t.projects.title}</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
           <p className="text-[#0F172A]/70 mt-4 max-w-2xl mx-auto">
-            Una selección de proyectos en los que he trabajado
+            {t.projects.description.replace("{count}", projects.length.toString())}
           </p>
         </motion.div>
 

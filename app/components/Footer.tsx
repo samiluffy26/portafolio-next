@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -35,7 +37,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-white/70 flex items-center gap-2"
           >
-            © {currentYear} Desarrollado por Samuel Guance.
+            © {currentYear} {t.footer.developed}
           </motion.p>
 
           {/* Tech Stack */}
@@ -45,7 +47,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-white/50"
           >
-            React · Next.js · TypeScript · Tailwind CSS · Motion
+            {t.footer.techStack}
           </motion.p>
         </div>
 
@@ -56,18 +58,22 @@ export default function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-wrap justify-center gap-6 mt-8 pt-8 border-t border-white/10"
         >
-          {["Inicio", "Sobre mí", "Skills", "Proyectos", "Contacto"].map(
-            (item, index) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "")}`}
-                whileHover={{ y: -2, color: "#10B981" }}
-                className="text-white/70 hover:text-[#10B981] transition-colors"
-              >
-                {item}
-              </motion.a>
-            )
-          )}
+          {[
+            { label: t.footer.quickLinks[0], href: "#hero" },
+            { label: t.footer.quickLinks[1], href: "#about" },
+            { label: t.footer.quickLinks[2], href: "#skills" },
+            { label: t.footer.quickLinks[3], href: "#projects" },
+            { label: t.footer.quickLinks[4], href: "#contact" },
+          ].map((item) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              whileHover={{ y: -2, color: "#10B981" }}
+              className="text-white/70 hover:text-[#10B981] transition-colors"
+            >
+              {item.label}
+            </motion.a>
+          ))}
         </motion.div>
       </div>
     </footer>

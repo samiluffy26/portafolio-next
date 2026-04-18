@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useLanguage } from "@/components/LanguageProvider";
 
 interface Certificate {
     title: string;
@@ -13,6 +14,7 @@ interface Certificate {
 }
 
 export default function Certificates() {
+    const { t } = useLanguage();
     const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
     const certificates: Certificate[] = [
@@ -51,12 +53,16 @@ export default function Certificates() {
     ];
 
     const categories = [
-      "All",
+      t.certificates.allCategories,
       ...Array.from(new Set(certificates.map((cert) => cert.category))),
     ];
 
-    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [selectedCategory, setSelectedCategory] = useState(t.certificates.allCategories);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+      setSelectedCategory(t.certificates.allCategories);
+    }, [t.certificates.allCategories]);
 
     const filteredCertificates =
       selectedCategory === "All"
@@ -100,11 +106,11 @@ export default function Certificates() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-white mb-4 text-4xl font-bold">
-                        Certificaciones destacadas
+                        {t.certificates.title}
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
                     <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-                        Validación de mis habilidades y aprendizaje continuo
+                        {t.certificates.subtitle}
                     </p>
                 </motion.div>
 
@@ -127,7 +133,7 @@ export default function Certificates() {
 
                 <div className="max-w-5xl mx-auto">
                     {filteredCertificates.length === 0 ? (
-                        <p className="text-white/70 text-center">No hay certificados en esta categoría.</p>
+                        <p className="text-white/70 text-center">{t.certificates.noCategory}</p>
                     ) : (
                         <div className="relative">
                             <motion.div
@@ -161,7 +167,7 @@ export default function Certificates() {
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 hover:opacity-100 transition-all backdrop-blur-[2px]">
                                         <div className="transform translate-y-4 hover:translate-y-0 transition-transform duration-300 flex items-center gap-2 text-white font-medium">
                                             <ZoomIn size={18} />
-                                            <span>Ver Certificado</span>
+                                            <span>{t.certificates.view}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +221,7 @@ export default function Certificates() {
                                     href={`/Certificados/${selectedCert?.filename}`}
                                     download
                                     className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
-                                    title="Descargar"
+                                    title={t.certificates.download}
                                 >
                                     <Download size={20} />
                                 </a>
@@ -224,7 +230,7 @@ export default function Certificates() {
                                     target="_blank"
                                     rel="noreferrer"
                                     className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
-                                    title="Abrir en nueva pestaña"
+                                    title={t.certificates.open}
                                 >
                                     <ExternalLink size={20} />
                                 </a>
