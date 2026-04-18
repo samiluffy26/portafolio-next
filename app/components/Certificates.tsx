@@ -1,8 +1,8 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
-import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download } from "lucide-react";
+import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 
 interface Certificate {
@@ -16,25 +16,74 @@ export default function Certificates() {
     const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
     const certificates: Certificate[] = [
-        { title: "Amazon Web Services", filename: "AMAZON WEB SERVICES.pdf", type: "pdf", category: "Cloud" },
+        { title: "Administrador de Base de Datos", filename: "AdministradorBaseDatos.pdf", type: "pdf", category: "Database" },
+        { title: "Administrador de Servidores", filename: "AdministradorDeServidores.pdf", type: "pdf", category: "DevOps" },
+        { title: "AWS Cloud", filename: "AMAZON WEB SERVICES.pdf", type: "pdf", category: "Cloud" },
+        { title: "Análisis Avanzado de Data Science", filename: "analalisis-avanzado-DataScience.pdf", type: "pdf", category: "Data" },
         { title: "ASP.NET Core Web API", filename: "ASP.NET CORE WEB API.pdf", type: "pdf", category: "Backend" },
-        { title: "Node.js, Express, MongoDB & more", filename: "Backend.pdf", type: "pdf", category: "Backend" },
-        { title: "Curso de IA 2026", filename: "Certificado-Samuel-Isaias-Guance-Santi.pdf", type: "pdf", category: "Fullstack" },
-        { title: "Microsoft Excel", filename: "Coursera HD3C3FB1FC3C.pdf", type: "pdf", category: "Course" },
-        { title: "Data Analysis & Visualization", filename: "Experto en analisis y visualizacion de datos.pdf", type: "pdf", category: "Data" },
-        { title: "C# Programming", filename: "Primer-Programming.pdf", type: "pdf", category: "Language" },
-        { title: "React Native", filename: "React Primer Curso.pdf", type: "pdf", category: "Frontend" },
-        { title: "React Native Animations", filename: "React bsic.pdf", type: "pdf", category: "Frontend" },
-        { title: "SQL 2025", filename: "SQL 2025.pdf", type: "pdf", category: "Database" },
-        { title: "Master en APIs RESTful", filename: "UDEMY.pdf", type: "pdf", category: "Course" },
-        { title: ".NET with MS SQL", filename: "_NET con SQL.pdf", type: "pdf", category: "Backend" },
-        { title: ".NET Course 2025", filename: "_net course 2025.pdf", type: "pdf", category: "Backend" },
+        { title: "Backend", filename: "Backend.pdf", type: "pdf", category: "Backend" },
+        { title: "C# básico con Microsoft", filename: "certi.jpg", type: "image", category: "Backend" },
         { title: "Liderazgo", filename: "certifiado-Liderazgo.pdf", type: "pdf", category: "Soft Skills" },
-        { title: "Desarrollo Web Fullstack", filename: "certificado-Indotel.pdf", type: "pdf", category: "Institution" },
-        { title: "Desarrollo Web", filename: "certificado.pdf", type: "pdf", category: "General" },
-        { title: "Bootcamp web development", filename: "certificado2.pdf", type: "pdf", category: "General" },
-        { title: "Desarrollador .NET", filename: "certi.jpg", type: "image", category: "General" },
+        { title: "Desarrollo IA", filename: "Certificado-DesarrolloIA.pdf", type: "pdf", category: "AI" },
+        { title: "Desarrollo Web Fullstack", filename: "certificado-Indotel.pdf", type: "pdf", category: "Fullstack" },
+        { title: "IA + Big Data", filename: "CertificadoIABIGDATA.pdf", type: "pdf", category: "AI" },
+        { title: "Codificación Java", filename: "codificacion-java.pdf", type: "pdf", category: "Backend" },
+        { title: "Curso Snowflake", filename: "Curso-Snowflake.pdf", type: "pdf", category: "Data" },
+        { title: "Java para IA", filename: "CursoJava-IA.pdf", type: "pdf", category: "AI" },
+        { title: "Repaso SQL", filename: "cursoRepaso-Sql.pdf", type: "pdf", category: "Database" },
+        { title: "Data Literacy", filename: "Data-Literacy.pdf", type: "pdf", category: "Data" },
+        { title: "Desarrollador Apps Móviles", filename: "DesarrolladorAppsMobiles.pdf", type: "pdf", category: "Mobile" },
+        { title: "Desarrollador Back-end", filename: "DesarrolladorBack-end.pdf", type: "pdf", category: "Backend" },
+        { title: "Desarrollador Front-end", filename: "DesarrolladorFront-end.pdf", type: "pdf", category: "Frontend" },
+        { title: "Desarrollo PY IA", filename: "DesarrolloPYIA.pdf", type: "pdf", category: "AI" },
+        { title: "Diplomado", filename: "Diplomado.pdf", type: "pdf", category: "Course" },
+        { title: "Django y Laravel", filename: "django-laravel.pdf", type: "pdf", category: "Backend" },
+        { title: "Experto en análisis y visualización de datos", filename: "Experto en analisis y visualizacion de datos.pdf", type: "pdf", category: "Data" },
+        { title: "Golang Course", filename: "golangCourse.pdf", type: "pdf", category: "Backend" },
+        { title: "OWASP API Java", filename: "OWASP-API-Java.pdf", type: "pdf", category: "Security" },
+        { title: "Python Práctica", filename: "Python-Practica.pdf", type: "pdf", category: "Backend" },
+        { title: "R Manipulación Avanzada de Datos", filename: "R-ManipulacionAvanzada-Datos.pdf", type: "pdf", category: "Data" },
+        { title: "React Primer Curso", filename: "React Primer Curso.pdf", type: "pdf", category: "Frontend" },
+        { title: "Seguridad de APIs", filename: "seguridad-apis.pdf", type: "pdf", category: "Security" },
+        { title: "Spring Boot Course", filename: "SpringBootCourse.pdf", type: "pdf", category: "Backend" },
+        { title: "SQL 2025", filename: "SQL 2025.pdf", type: "pdf", category: "Database" },
+        { title: ".NET con SQL", filename: "_NET con SQL.pdf", type: "pdf", category: "Backend" },
     ];
+
+    const categories = [
+      "All",
+      ...Array.from(new Set(certificates.map((cert) => cert.category))),
+    ];
+
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const filteredCertificates =
+      selectedCategory === "All"
+        ? certificates
+        : certificates.filter((cert) => cert.category === selectedCategory);
+
+    useEffect(() => {
+      setCurrentIndex(0);
+    }, [selectedCategory]);
+
+    const currentCert = filteredCertificates[currentIndex] ?? filteredCertificates[0];
+
+    const prevCertificate = () => {
+      setCurrentIndex((prev) =>
+        filteredCertificates.length === 0
+          ? 0
+          : (prev - 1 + filteredCertificates.length) % filteredCertificates.length,
+      );
+    };
+
+    const nextCertificate = () => {
+      setCurrentIndex((prev) =>
+        filteredCertificates.length === 0
+          ? 0
+          : (prev + 1) % filteredCertificates.length,
+      );
+    };
 
     return (
         <section id="certificates" className="py-20 relative overflow-hidden">
@@ -51,7 +100,7 @@ export default function Certificates() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-white mb-4 text-4xl font-bold">
-                        Certificaciones
+                        Certificaciones destacadas
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-[#6D28D9] to-[#10B981] mx-auto rounded-full" />
                     <p className="text-white/60 mt-4 max-w-2xl mx-auto">
@@ -59,47 +108,93 @@ export default function Certificates() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {certificates.map((cert, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.05 }}
-                            onClick={() => setSelectedCert(cert)}
-                            className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden cursor-pointer hover:border-[#10B981]/50 hover:bg-white/10 transition-all duration-300"
+                <div className="mb-8 flex flex-wrap justify-center gap-2">
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            type="button"
+                            onClick={() => setSelectedCategory(category)}
+                            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                                selectedCategory === category
+                                    ? "bg-[#10B981] text-black"
+                                    : "bg-white/10 text-white hover:bg-white/20"
+                            }`}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 to-[#6D28D9]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            {category}
+                        </button>
+                    ))}
+                </div>
 
-                            <div className="p-6 flex flex-col items-center justify-center min-h-[200px] gap-4">
-                                <div className="relative">
-                                    <div className="absolute inset-0 bg-[#10B981]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    {cert.type === 'pdf' ? (
-                                        <FileText size={48} className="text-white/80 group-hover:text-[#10B981] transition-colors relative z-10" />
-                                    ) : (
-                                        <ImageIcon size={48} className="text-white/80 group-hover:text-[#6D28D9] transition-colors relative z-10" />
-                                    )}
-                                </div>
+                <div className="max-w-5xl mx-auto">
+                    {filteredCertificates.length === 0 ? (
+                        <p className="text-white/70 text-center">No hay certificados en esta categoría.</p>
+                    ) : (
+                        <div className="relative">
+                            <motion.div
+                                key={currentCert?.filename}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="group relative mx-auto max-w-3xl bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:border-[#10B981]/50 hover:bg-white/10 transition-all duration-300"
+                                onClick={() => currentCert && setSelectedCert(currentCert)}
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 to-[#6D28D9]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="relative p-6 sm:p-10 flex flex-col items-center justify-center gap-6 min-h-[320px] sm:min-h-[360px]">
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-[#10B981]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {currentCert?.type === "pdf" ? (
+                                            <FileText size={56} className="text-white/80 group-hover:text-[#10B981] transition-colors relative z-10" />
+                                        ) : (
+                                            <ImageIcon size={56} className="text-white/80 group-hover:text-[#6D28D9] transition-colors relative z-10" />
+                                        )}
+                                    </div>
 
-                                <div className="text-center">
-                                    <h3 className="text-white font-medium group-hover:text-[#10B981] transition-colors line-clamp-2 mb-2">
-                                        {cert.title}
-                                    </h3>
-                                    <Badge variant="outline" className="text-xs border-white/20 text-white/60 group-hover:border-[#10B981]/30 group-hover:text-[#10B981]">
-                                        {cert.category}
-                                    </Badge>
-                                </div>
+                                    <div className="text-center max-w-xl">
+                                        <h3 className="text-white text-xl sm:text-2xl font-semibold group-hover:text-[#10B981] transition-colors mb-2 sm:mb-3">
+                                            {currentCert?.title}
+                                        </h3>
+                                        <Badge variant="outline" className="text-xs sm:text-sm border-white/20 text-white/60 group-hover:border-[#10B981]/30 group-hover:text-[#10B981]">
+                                            {currentCert?.category}
+                                        </Badge>
+                                    </div>
 
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-all backdrop-blur-[2px]">
-                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2 text-white font-medium">
-                                        <ZoomIn size={18} />
-                                        <span>Ver Certificado</span>
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 hover:opacity-100 transition-all backdrop-blur-[2px]">
+                                        <div className="transform translate-y-4 hover:translate-y-0 transition-transform duration-300 flex items-center gap-2 text-white font-medium">
+                                            <ZoomIn size={18} />
+                                            <span>Ver Certificado</span>
+                                        </div>
                                     </div>
                                 </div>
+                            </motion.div>
+
+                            {filteredCertificates.length > 1 && (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={prevCertificate}
+                                        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white shadow-lg transition hover:bg-white/20 sm:-left-4"
+                                        aria-label="Anterior certificado"
+                                    >
+                                        <ChevronLeft size={24} />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={nextCertificate}
+                                        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white shadow-lg transition hover:bg-white/20 sm:-right-4"
+                                        aria-label="Siguiente certificado"
+                                    >
+                                        <ChevronRight size={24} />
+                                    </button>
+                                </>
+                            )}
+
+                            <div className="mt-6 flex items-center justify-center gap-2 flex-wrap text-white/60 text-sm">
+                                <span>{currentIndex + 1}/{filteredCertificates.length}</span>
+                                <span className="h-1 w-1 rounded-full bg-white/50" />
+                                <span>{currentCert?.filename}</span>
                             </div>
-                        </motion.div>
-                    ))}
+                        </div>
+                    )}
                 </div>
             </div>
 
