@@ -208,43 +208,43 @@ export default function Certificates() {
             <Dialog.Root open={!!selectedCert} onOpenChange={(open) => !open && setSelectedCert(null)}>
                 <Dialog.Portal>
                     <Dialog.Overlay className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 animate-in fade-in duration-200" />
-                    <Dialog.Content className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[95vw] h-[90vh] max-w-6xl bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl z-50 animate-in zoom-in-95 duration-200 flex flex-col outline-none">
+                    <Dialog.Content className="fixed inset-4 sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:w-[90vw] sm:h-[80vh] md:w-[85vw] md:h-[85vh] lg:max-w-6xl bg-[#0a0a0a] border border-white/10 rounded-xl sm:rounded-2xl shadow-2xl z-50 animate-in zoom-in-95 duration-200 flex flex-col outline-none">
 
                         {/* Modal Header */}
-                        <div className="flex items-center justify-between p-4 border-b border-white/10">
-                            <div className="flex items-center gap-3">
-                                {selectedCert?.type === 'pdf' ? <FileText className="text-[#10B981]" /> : <ImageIcon className="text-[#6D28D9]" />}
-                                <h3 className="text-white font-medium text-lg">{selectedCert?.title}</h3>
+                        <div className="flex items-center justify-between p-3 sm:p-4 border-b border-white/10 gap-2">
+                            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                                {selectedCert?.type === 'pdf' ? <FileText size={20} className="text-[#10B981] flex-shrink-0 hidden sm:block" /> : <ImageIcon size={20} className="text-[#6D28D9] flex-shrink-0 hidden sm:block" />}
+                                <h3 className="text-white font-medium text-xs sm:text-base md:text-lg truncate">{selectedCert?.title}</h3>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                                 <a
                                     href={`/Certificados/${selectedCert?.filename}`}
                                     download
-                                    className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
+                                    className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
                                     title={t.certificates.download}
                                 >
-                                    <Download size={20} />
+                                    <Download size={16} className="sm:w-5 sm:h-5" />
                                 </a>
                                 <a
                                     href={`/Certificados/${selectedCert?.filename}`}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
+                                    className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white"
                                     title={t.certificates.open}
                                 >
-                                    <ExternalLink size={20} />
+                                    <ExternalLink size={16} className="sm:w-5 sm:h-5" />
                                 </a>
                                 <button
                                     onClick={() => setSelectedCert(null)}
-                                    className="p-2 hover:bg-red-500/20 hover:text-red-500 rounded-full transition-colors text-white/70"
+                                    className="p-1.5 sm:p-2 hover:bg-red-500/20 hover:text-red-500 rounded-full transition-colors text-white/70"
                                 >
-                                    <X size={20} />
+                                    <X size={16} className="sm:w-5 sm:h-5" />
                                 </button>
                             </div>
                         </div>
 
                         {/* Modal Body - Viewer */}
-                        <div className="flex-1 bg-[#1a1a1a] relative overflow-hidden flex items-center justify-center p-4">
+                        <div className="flex-1 bg-[#1a1a1a] relative overflow-auto flex items-center justify-center p-2 sm:p-4">
                             {selectedCert && (
                                 selectedCert.type === 'pdf' ? (
                                     <object
@@ -252,14 +252,15 @@ export default function Certificates() {
                                         type="application/pdf"
                                         className="w-full h-full rounded-lg"
                                     >
-                                        <div className="text-white text-center p-8">
-                                            <p>Tu navegador no puede mostrar este PDF directamente.</p>
+                                        <div className="text-white text-center p-4 sm:p-8">
+                                            <p className="text-xs sm:text-sm mb-4">Your browser cannot display PDF directly.</p>
                                             <a
                                                 href={`/Certificados/${selectedCert.filename}`}
                                                 target="_blank"
-                                                className="text-[#10B981] hover:underline mt-2 inline-block"
+                                                rel="noreferrer"
+                                                className="text-[#10B981] hover:underline text-sm sm:text-base inline-block"
                                             >
-                                                Abrir PDF
+                                                Open PDF
                                             </a>
                                         </div>
                                     </object>
@@ -267,7 +268,7 @@ export default function Certificates() {
                                     <img
                                         src={`/Certificados/${selectedCert.filename}`}
                                         alt={selectedCert.title}
-                                        className="max-w-full max-h-full object-contain rounded-lg"
+                                        className="max-w-full max-h-full object-contain rounded-lg w-auto"
                                     />
                                 )
                             )}
