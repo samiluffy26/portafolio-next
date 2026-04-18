@@ -35,7 +35,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-white/70 flex items-center gap-2"
           >
-            © {currentYear} Desarrollado con amor por Samuel Guance.
+            © {currentYear} Desarrollado por Samuel Guance.
           </motion.p>
 
           {/* Tech Stack */}
