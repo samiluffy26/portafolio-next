@@ -14,6 +14,8 @@ interface Project {
   githubUrl?: string;
   liveUrl?: string;
   image: string;
+  isPrivate?: boolean;
+  comingSoon?: boolean;
 }
 
 export default function ProjectsCarousel() {
@@ -30,6 +32,7 @@ export default function ProjectsCarousel() {
       technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
       featured: true,
       image: "/eduvisor.jpg",
+      isPrivate: true
     },
     {
       title: "Billing & Inventory System",
@@ -37,6 +40,7 @@ export default function ProjectsCarousel() {
         "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
       technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
       image: "/facturacion1.png",
+      isPrivate: true,
     },
     {
       title: "SeVaNe",
@@ -60,11 +64,13 @@ export default function ProjectsCarousel() {
         "Amazon/Uber style e-commerce platform for supermarkets with real-time inventory.",
       technologies: ["React", "Next.js", "Strapi", "Tailwind CSS"],
       image: "/supermarket.png",
+      githubUrl: "https://github.com/samiluffy26/E-commerce",
+    
     },
     {
       title: "Blog & Music App",
       description:
-        "Full-stack blogging platform with integrated music streaming features.",
+        "Sami Music Group is a cutting-edge cultural hub that merges a music magazine with a hypebeast merchandise store to empower independent artists. Developed with React 19 and TypeScript under a striking brutalist aesthetic, the platform stands out for its native integration with Google Gemini's AI. This not only automates the creation of biographies and dynamic content but also revolutionizes the shopping experience by enabling real-time Smart Recoloring, where AI visually adjusts the color of garments directly in the store before the user decides to purchase them.",
       technologies: ["Node.js", "React", "MongoDB", "Nest.js", "Stripe", "Docker"],
       githubUrl: "https://github.com/samiluffy26/Ecommerce-BlogArtist",
       image: "ecommerce.jpg",
@@ -143,15 +149,7 @@ export default function ProjectsCarousel() {
       liveUrl: "https://www.barbersanx.online",
       image: "/barbersanx.png",
     },
-    {
-      title: "HandsMachines",
-      description:
-        "HandsMachines is an open-source software solution designed to facilitate the learning and practice of American Sign Language (ASL) through advanced computer vision and machine learning techniques. The platform enables real-time gesture detection, providing immediate feedback to the user and allowing customization of the AI ​​model based on the individual physical characteristics of each hand.",
-      technologies: ["React", "Vite", "MediaPipe Hands", "ONNX Runtime Web", "Tailwind", "Mongo", "FastAPI", "Scikit-Learn", "Skl2onnx", "Uvicorn"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/samiluffy26/HandsMachines",
-      image: "/handsmachines.png",
-    },
+  
     {
       title: "Sami Netflix",
       description:
@@ -175,6 +173,46 @@ export default function ProjectsCarousel() {
       technologies: ["Entity Framework", "ASP.NET Core", "Blazor", ".NET", "MongoDB"],
       githubUrl: "https://github.com/samiluffy26/Spa-Blazor",
       image: "/spa-Fullstack.png",
+    },
+    {
+      title: "HandsMachines",
+      description:
+        "This project consists of an interactive web application designed to bridge the communication gap between people with hearing disabilities and the digital environment. It uses computer vision models to instantly detect and translate hand gestures from the sign language alphabet into text via the device's camera.",
+      technologies: ["MediaPipe (Hands)", "React", "Vite", "TypeScript", "HTML5 Canvas", "Tailwind CSS", "ONNX Runtime Web", "FastAPI", "MongoDB", "Scikit-learn", "Uvicorn" ],
+      githubUrl: "https://github.com/samiluffy26/HandsMachines",
+      image: "/HandsMachine.png",
+    },
+    {
+      title: "FullStack Restaurant Management",
+      description:
+        "A full-stack restaurant management system with menu, orders, and inventory control.",
+      technologies: ["Zustand", "React", "Vite", "TypeScript", "React Router DOM", "Tailwind CSS", "Axios", "Node.js & Express", "MongoDB", "Socket.io", "JWT", "Bcrypt", "Multer", "Helmet & Morgan", "Zod" ],
+      githubUrl: "https://github.com/samiluffy26/Proyecto-fullstackPractica",
+      image: "/RestaurantFS.png",
+    },
+    {
+      title: "First Full Stack Project",
+      description:
+        "Full-stack blog with authentication, user management, CRUD functionality for posts and comments, and an admin panel for content moderation. It implements security with JWT, validation with Zod, and file handling with Multer.",
+      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React" ],
+      githubUrl: "https://github.com/samiluffy26/Blog-PrimerProyecto",
+      image: "/PrimerBlog.png",
+    },
+    {
+      title: "CJ-Informa",
+      description:
+        "Full-stack school newspaper with authentication, user management, CRUD functionality for posts and comments, and an administration panel for content moderation. Includes a landing page to display relevant information about the newspaper and its mission.",
+      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Cloudinary", "Vite" ],
+      liveUrl: "https://cj.informa.samueltech.dev",
+      image: "/cj-informa.png",
+    },
+    {
+      title: "Blog Dev",
+      description:
+        "A blog for developers to share knowledge, experiences, and resources related to software development. The blog covers a wide range of topics, from tutorials and how-tos to analyses of technological trends and interviews with industry experts. With a focus on community, the blog encourages active reader participation through comments, discussions, and content contributions.",
+      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Cloudinary", "Vite" ],
+      image: "/BlogDev.png",
+      comingSoon: true,
     },
   ];
 
@@ -250,7 +288,7 @@ export default function ProjectsCarousel() {
 
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {currentProject.githubUrl && (
+                      {currentProject.githubUrl && !currentProject.isPrivate && !currentProject.comingSoon && (
                         <motion.a
                           href={currentProject.githubUrl}
                           target="_blank"
@@ -262,7 +300,7 @@ export default function ProjectsCarousel() {
                           <Github size={24} className="text-white" />
                         </motion.a>
                       )}
-                      {currentProject.liveUrl && (
+                      {currentProject.liveUrl && !currentProject.isPrivate && !currentProject.comingSoon && (
                         <motion.a
                           href={currentProject.liveUrl}
                           target="_blank"
@@ -273,6 +311,16 @@ export default function ProjectsCarousel() {
                         >
                           <ExternalLink size={24} className="text-white" />
                         </motion.a>
+                      )}
+                      {currentProject.isPrivate && (
+                        <div className="p-3 bg-red-500/20 backdrop-blur-md rounded-full border border-red-500/50">
+                          <span className="text-red-400 text-sm font-medium">Private</span>
+                        </div>
+                      )}
+                      {currentProject.comingSoon && (
+                        <div className="p-3 bg-yellow-500/20 backdrop-blur-md rounded-full border border-yellow-500/50">
+                          <span className="text-yellow-400 text-sm font-medium">Coming Soon</span>
+                        </div>
                       )}
                     </div>
                   </motion.div>
@@ -321,13 +369,39 @@ export default function ProjectsCarousel() {
                       ))}
                     </motion.div>
 
+                    {currentProject.isPrivate && (
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="flex"
+                      >
+                        <Badge className="bg-red-500/20 text-red-400 border-red-500/50">
+                          Private
+                        </Badge>
+                      </motion.div>
+                    )}
+
+                    {currentProject.comingSoon && (
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="flex"
+                      >
+                        <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/50">
+                          Coming Soon
+                        </Badge>
+                      </motion.div>
+                    )}
+
                     <motion.div
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.6 }}
                       className="flex gap-4"
                     >
-                      {currentProject.githubUrl && (
+                      {currentProject.githubUrl && !currentProject.isPrivate && !currentProject.comingSoon && (
                         <motion.a
                           href={currentProject.githubUrl}
                           target="_blank"
@@ -340,7 +414,7 @@ export default function ProjectsCarousel() {
                           Código
                         </motion.a>
                       )}
-                      {currentProject.liveUrl && (
+                      {currentProject.liveUrl && !currentProject.isPrivate && !currentProject.comingSoon && (
                         <motion.a
                           href={currentProject.liveUrl}
                           target="_blank"
