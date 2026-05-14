@@ -214,6 +214,14 @@ export default function ProjectsCarousel() {
       image: "/BlogDev.png",
       comingSoon: true,
     },
+    {
+      title: "EduNova",
+      description:
+        "EduNova is an educational platform developed during the Hackathon for the Rights of the Dominican Ombudsman. It is designed to help schools identify students at risk of dropping out early, using data such as attendance, academic performance, behavior, grade repetition, and other important factors. Its goal is to enable teachers, counselors, and administrators to make better decisions, monitor each case, and implement support measures before the problem escalates. In short, EduNova aims to reduce school dropout rates and strengthen student retention within the education system.",
+      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Sqlite", "Next.js", "FastAPI" ],
+      image: "/EduNova.png",
+      comingSoon: true,
+    },
   ];
 
   const nextProject = () => {
@@ -262,14 +270,14 @@ export default function ProjectsCarousel() {
                 <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden p-8">
                   {/* Project Image */}
                   <motion.div
-                    className="relative aspect-video rounded-xl overflow-hidden group"
+                    className="relative aspect-[2.05/1] rounded-xl overflow-hidden group"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
                     <ImageWithFallback
                       src={currentProject.image}
                       alt={currentProject.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
