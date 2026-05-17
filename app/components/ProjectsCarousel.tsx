@@ -220,7 +220,8 @@ export default function ProjectsCarousel() {
         "EduNova is an educational platform developed during the Hackathon for the Rights of the Dominican Ombudsman. It is designed to help schools identify students at risk of dropping out early, using data such as attendance, academic performance, behavior, grade repetition, and other important factors. Its goal is to enable teachers, counselors, and administrators to make better decisions, monitor each case, and implement support measures before the problem escalates. In short, EduNova aims to reduce school dropout rates and strengthen student retention within the education system.",
       technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Sqlite", "Next.js", "FastAPI" ],
       image: "/EduNova.png",
-      comingSoon: true,
+      liveUrl: "https://edunova.sanxoft.lat",
+      
     },
   ];
 
