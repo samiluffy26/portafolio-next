@@ -273,8 +273,8 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#10B981] via-[#8B5CF6] to-[#6D28D9] rounded-full blur-2xl opacity-40" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#10B981]/30 bg-[#020617]">
                 <ImageWithFallback
-                  src="/me.jpg"
-                  alt="Fullstack Developer"
+                  src="/me-circle.png"
+                  alt="Samuel Guance - Fullstack Developer & Data Scientist"
                   className="w-full h-full object-contain object-center"
                 />
               </div>
