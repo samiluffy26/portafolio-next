@@ -24,6 +24,7 @@ const translations = {
         "I am a junior fullstack developer and Project Manager of the EduVisor project, a web platform for the Ministry of Education. Specialized in building scalable solutions with React, Node.js, and .NET.",
       viewProjects: "View Projects",
       contact: "Contact",
+      downloadCV: "Download CV",
       scroll: "Scroll",
       fast: "Fast",
       precise: "Precise",
@@ -61,6 +62,8 @@ const translations = {
       next: "Next project",
       previous: "Previous project",
       ariaLabel: "Go to project {index}",
+      private: "Private",
+      comingSoon: "Coming Soon",
     },
     certificates: {
       title: "Certifications",
@@ -70,6 +73,8 @@ const translations = {
       open: "Open in new tab",
       allCategories: "All",
       noCategory: "No certificates in this category.",
+      pdfError: "Your browser cannot display PDF directly.",
+      openPdf: "Open PDF",
     },
     contact: {
       title: "Contact",
@@ -141,6 +146,7 @@ const translations = {
         "Soy un desarrollador fullstack junior y Project Manager del proyecto EduVisor, una plataforma web para el Ministerio de Educación. Especializado en construir soluciones escalables con React, Node.js y .NET.",
       viewProjects: "Ver Proyectos",
       contact: "Contactar",
+      downloadCV: "Descargar CV",
       scroll: "Scroll",
       fast: "Rápido",
       precise: "Preciso",
@@ -178,6 +184,8 @@ const translations = {
       next: "Proyecto siguiente",
       previous: "Proyecto anterior",
       ariaLabel: "Ir al proyecto {index}",
+      private: "Privado",
+      comingSoon: "Próximamente",
     },
     certificates: {
       title: "Certificaciones",
@@ -187,6 +195,8 @@ const translations = {
       open: "Abrir en nueva pestaña",
       allCategories: "Todos",
       noCategory: "No hay certificados en esta categoría.",
+      pdfError: "Tu navegador no puede mostrar el PDF directamente.",
+      openPdf: "Abrir PDF",
     },
     contact: {
       title: "Contacto",

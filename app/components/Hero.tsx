@@ -1,11 +1,13 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Code2, Terminal, Sparkles, Zap, Target } from "lucide-react";
+import { ArrowDown, Code2, Terminal, Sparkles, Zap, Target, Download } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Hero() {
   const { t } = useLanguage();
+  const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
   const codeLines = [
     "const developer = {",
     "  name: 'Fullstack Dev',",
@@ -175,6 +177,52 @@ export default function Hero() {
                 <Terminal size={20} />
                 {t.hero.contact}
               </motion.a>
+
+              <div 
+                className="relative"
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                    setIsCvMenuOpen(false);
+                  }
+                }}
+              >
+                <motion.button
+                  onClick={() => setIsCvMenuOpen(!isCvMenuOpen)}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(16, 185, 129, 0.5)" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 rounded-full border-2 border-[#10B981] text-white hover:bg-[#10B981]/20 transition-all flex items-center gap-2"
+                >
+                  <Download size={20} />
+                  {t.hero.downloadCV}
+                </motion.button>
+                
+                {isCvMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-full left-0 mt-2 w-40 bg-[#020617]/90 backdrop-blur-md border border-[#10B981]/30 rounded-xl overflow-hidden z-50 flex flex-col shadow-xl"
+                  >
+                    <a
+                      href="/CV-AMPLIADO-ENGLISH.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-3 text-white/80 hover:text-white hover:bg-[#10B981]/20 transition-colors border-b border-white/10 flex items-center gap-2"
+                      onClick={() => setIsCvMenuOpen(false)}
+                    >
+                      🇬🇧 English
+                    </a>
+                    <a
+                      href="/CV-AMPLIADO-SPANISH.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-3 text-white/80 hover:text-white hover:bg-[#10B981]/20 transition-colors flex items-center gap-2"
+                      onClick={() => setIsCvMenuOpen(false)}
+                    >
+                      🇪🇸 Español
+                    </a>
+                  </motion.div>
+                )}
+              </div>
             </motion.div>
 
             {/* Tech Stack Icons */}

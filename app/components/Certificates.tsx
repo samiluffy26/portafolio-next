@@ -6,51 +6,12 @@ import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download, Chevro
 import * as Dialog from "@radix-ui/react-dialog";
 import { useLanguage } from "@/components/LanguageProvider";
 
-interface Certificate {
-    title: string;
-    filename: string;
-    type: "pdf" | "image";
-    category: string;
-}
+import { getCertificates } from "@/data/certificates";
 
 export default function Certificates() {
-    const { t } = useLanguage();
-    const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
-
-    const certificates: Certificate[] = [
-        { title: "Administrador de Base de Datos", filename: "AdministradorBaseDatos.pdf", type: "pdf", category: "Database" },
-        { title: "Administrador de Servidores", filename: "AdministradorDeServidores.pdf", type: "pdf", category: "DevOps" },
-        { title: "AWS Cloud", filename: "AMAZON WEB SERVICES.pdf", type: "pdf", category: "Cloud" },
-        { title: "Análisis Avanzado de Data Science", filename: "analalisis-avanzado-DataScience.pdf", type: "pdf", category: "Data" },
-        { title: "ASP.NET Core Web API", filename: "ASP.NET CORE WEB API.pdf", type: "pdf", category: "Backend" },
-        { title: "Backend", filename: "Backend.pdf", type: "pdf", category: "Backend" },
-        { title: "C# básico con Microsoft", filename: "certi.jpg", type: "image", category: "Backend" },
-        { title: "Liderazgo", filename: "certifiado-Liderazgo.pdf", type: "pdf", category: "Soft Skills" },
-        { title: "Desarrollo IA", filename: "Certificado-DesarrolloIA.pdf", type: "pdf", category: "AI" },
-        { title: "Desarrollo Web Fullstack", filename: "certificado-Indotel.pdf", type: "pdf", category: "Fullstack" },
-        { title: "IA + Big Data", filename: "CertificadoIABIGDATA.pdf", type: "pdf", category: "AI" },
-        { title: "Codificación Java", filename: "codificacion-java.pdf", type: "pdf", category: "Backend" },
-        { title: "Curso Snowflake", filename: "Curso-Snowflake.pdf", type: "pdf", category: "Data" },
-        { title: "Java para IA", filename: "CursoJava-IA.pdf", type: "pdf", category: "AI" },
-        { title: "Repaso SQL", filename: "cursoRepaso-Sql.pdf", type: "pdf", category: "Database" },
-        { title: "Data Literacy", filename: "Data-Literacy.pdf", type: "pdf", category: "Data" },
-        { title: "Desarrollador Apps Móviles", filename: "DesarrolladorAppsMobiles.pdf", type: "pdf", category: "Mobile" },
-        { title: "Desarrollador Back-end", filename: "DesarrolladorBack-end.pdf", type: "pdf", category: "Backend" },
-        { title: "Desarrollador Front-end", filename: "DesarrolladorFront-end.pdf", type: "pdf", category: "Frontend" },
-        { title: "Desarrollo PY IA", filename: "DesarrolloPYIA.pdf", type: "pdf", category: "AI" },
-        { title: "Diplomado", filename: "Diplomado.pdf", type: "pdf", category: "Course" },
-        { title: "Django y Laravel", filename: "django-laravel.pdf", type: "pdf", category: "Backend" },
-        { title: "Experto en análisis y visualización de datos", filename: "Experto en analisis y visualizacion de datos.pdf", type: "pdf", category: "Data" },
-        { title: "Golang Course", filename: "golangCourse.pdf", type: "pdf", category: "Backend" },
-        { title: "OWASP API Java", filename: "OWASP-API-Java.pdf", type: "pdf", category: "Security" },
-        { title: "Python Práctica", filename: "Python-Practica.pdf", type: "pdf", category: "Backend" },
-        { title: "R Manipulación Avanzada de Datos", filename: "R-ManipulacionAvanzada-Datos.pdf", type: "pdf", category: "Data" },
-        { title: "React Primer Curso", filename: "React Primer Curso.pdf", type: "pdf", category: "Frontend" },
-        { title: "Seguridad de APIs", filename: "seguridad-apis.pdf", type: "pdf", category: "Security" },
-        { title: "Spring Boot Course", filename: "SpringBootCourse.pdf", type: "pdf", category: "Backend" },
-        { title: "SQL 2025", filename: "SQL 2025.pdf", type: "pdf", category: "Database" },
-        { title: ".NET con SQL", filename: "_NET con SQL.pdf", type: "pdf", category: "Backend" },
-    ];
+    const { t, locale } = useLanguage();
+    const [selectedCert, setSelectedCert] = useState<any>(null);
+    const certificates = getCertificates(locale);
 
     const categories = [
       t.certificates.allCategories,
@@ -253,14 +214,14 @@ export default function Certificates() {
                                         className="w-full h-full rounded-lg"
                                     >
                                         <div className="text-white text-center p-4 sm:p-8">
-                                            <p className="text-xs sm:text-sm mb-4">Your browser cannot display PDF directly.</p>
+                                            <p className="text-xs sm:text-sm mb-4">{t.certificates.pdfError}</p>
                                             <a
                                                 href={`/Certificados/${selectedCert.filename}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 className="text-[#10B981] hover:underline text-sm sm:text-base inline-block"
                                             >
-                                                Open PDF
+                                                {t.certificates.openPdf}
                                             </a>
                                         </div>
                                     </object>

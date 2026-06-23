@@ -6,224 +6,14 @@ import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLanguage } from "@/components/LanguageProvider";
 
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  featured?: boolean;
-  githubUrl?: string;
-  liveUrl?: string;
-  image: string;
-  isPrivate?: boolean;
-  comingSoon?: boolean;
-}
+import { getProjects } from "@/data/projects";
 
 export default function ProjectsCarousel() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { t } = useLanguage();
-
-  const projects: Project[] = [
-    {
-      title: "EduVisor",
-      description:
-        "Project Manager & Backend Developer. Web platform for the Ministry of Education enabling educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes.",
-      technologies: ["Node.js", "MongoDB", "Mongoose", "JWT", "Express"],
-      featured: true,
-      image: "/eduvisor.jpg",
-      isPrivate: true
-    },
-    {
-      title: "Billing & Inventory System",
-      description:
-        "Comprehensive billing and inventory system for vehicle management with full CRUD operations.",
-      technologies: ["React", ".NET Core", "Entity Framework", "SQL Server"],
-      image: "/facturacion1.png",
-      isPrivate: true,
-    },
-    {
-      title: "SeVaNe",
-      description:
-        "Real estate, sales, loans, advisory and financial management platform.",
-      technologies: ["Node", "Express", "MongoDB", "Mongoose", "HTML", "CSS"],
-      liveUrl: "https://sevane.org",
-      image: "/sevane.jpg",
-    },
-    {
-      title: "Yira's Gourmet",
-      description:
-        "Restaurant management system with menu, orders, and inventory control.",
-      technologies: ["React", "Vite", "Node", "Express", "MongoDB"],
-      liveUrl: "https://yiras-gourmet.brightmatter.lat",
-      image: "/yiras.jpg",
-    },
-    {
-      title: "Supermarket E-commerce",
-      description:
-        "Amazon/Uber style e-commerce platform for supermarkets with real-time inventory.",
-      technologies: ["React", "Next.js", "Strapi", "Tailwind CSS"],
-      image: "/supermarket.png",
-      githubUrl: "https://github.com/samiluffy26/E-commerce",
-    
-    },
-    {
-      title: "Blog & Music App",
-      description:
-        "Sami Music Group is a cutting-edge cultural hub that merges a music magazine with a hypebeast merchandise store to empower independent artists. Developed with React 19 and TypeScript under a striking brutalist aesthetic, the platform stands out for its native integration with Google Gemini's AI. This not only automates the creation of biographies and dynamic content but also revolutionizes the shopping experience by enabling real-time Smart Recoloring, where AI visually adjusts the color of garments directly in the store before the user decides to purchase them.",
-      technologies: ["Node.js", "React", "MongoDB", "Nest.js", "Stripe", "Docker"],
-      githubUrl: "https://github.com/samiluffy26/Ecommerce-BlogArtist",
-      image: "ecommerce.jpg",
-    },
-    {
-      title: "Social Media Platform",
-      description:
-        "Social media platform with real-time updates, posts, and user interactions.",
-      technologies: ["Node.js", "Mongoose", "MongoDB", "Socket.io"],
-      githubUrl: "https://github.com/samiluffy26/Red-Social",
-      image: "/socialnet.png",
-    },
-    {
-      title: "Personal Portfolio",
-      description:
-        "Modern personal portfolio showcasing projects and skills with animations.",
-      technologies: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-      githubUrl: "https://github.com/samiluffy26/portafolio-next.git",
-      liveUrl: "https://samueltech.dev/",
-      image: "/portafolio.png",
-    },
-    {
-      title: "Children Donation Platform",
-      description:
-        "Donation platform to help children in need with transparent fund tracking.",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/JodrellPG/LasMargaritas.git",
-      image: "/donate.jpg",
-    },
-    {
-      title: "Pet Adoption & Rescue",
-      description:
-        "Animal adoption and rescue platform connecting pets with loving homes.",
-      technologies: ["HTML", "CSS", "JavaScript", "PHP"],
-      githubUrl: "https://github.com/samiluffy26/Proyectos-Adopcion-de-perritos.git",
-      image: "/pets.png",
-    },
-    {
-      title: "Personal Startup",
-      description:
-        "Full-stack startup project with modern architecture and scalable solutions.",
-      technologies: ["React", "Next.js", "Tailwind", "Node", "Nest", "MongoDB"],
-      githubUrl: "https://github.com/samiluffy26/brightmatterlab.git",
-      liveUrl: "https://startup.brightmatter.lat",
-      image: "/startup.png",
-    },
-    {
-      title: "Patient Transport Platform",
-      description:
-        "Full-stack platform for a patient transport and medical services company, featuring real-time tracking, scheduling, and management tools to enhance operational efficiency and patient care.",
-      technologies: ["React", "Astro", "Tailwind", "Node", "Express", "MongoDB", "Stripe"],
-      liveUrl: "https://www.ontheclocktrans.com",
-      image: "/ontheclock.png",
-    },
-    {
-      title: "Scada",
-      description:
-        "Landing page for a Dominican Republic real estate company.",
-      technologies: ["React", "Vite", "Tailwind", "Node"],
-      liveUrl: "https://www.scadadr.com",
-      image: "/scada.png",
-    },
-    {
-      title: "SanXoft Page",
-      description:
-        "Full-stack startup project with modern architecture and scalable solutions.",
-      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
-      liveUrl: "https://www.sanxoft.lat",
-      image: "/sanxoft.png",
-    },
-    {
-      title: "Barber Sanx",
-      description:
-        "SAAS platform for a Dominican Republic barber shop, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
-      technologies: ["React Native", "Angular", "Tailwind", "Node", "Nest.js", "Mongo", "Stripe", "Docker", "Kubernetes", "Azure", "Supabase", "Resend"],
-      liveUrl: "https://www.barbersanx.online",
-      image: "/barbersanx.png",
-    },
-  
-    {
-      title: "Sami Netflix",
-      description:
-        "A modern streaming platform for showcasing movies and TV shows, built with the latest web technologies.",
-      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
-      githubUrl: "https://github.com/samiluffy26/SamiNET",
-      image: "/saminetflix.png",
-    },
-    {
-      title: "Spa-FullStack",
-      description:
-        "A full-stack Single Page Application (SPA) for a spa and wellness center, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
-      technologies: ["React", "Vite", "Tailwind", "Node", "Express", "MongoDB"],
-      githubUrl: "https://github.com/samiluffy26/Spa-Fullstack",
-      image: "/spa-Fullstack.png",
-    },
-    {
-      title: "Blazor Spa FullStack",
-      description:
-        " A full-stack Single Page Application (SPA) for a spa and wellness center, featuring appointment scheduling, service management, and customer engagement tools to enhance the client experience and streamline operations.",
-      technologies: ["Entity Framework", "ASP.NET Core", "Blazor", ".NET", "MongoDB"],
-      githubUrl: "https://github.com/samiluffy26/Spa-Blazor",
-      image: "/spa-Fullstack.png",
-    },
-    {
-      title: "HandsMachines",
-      description:
-        "This project consists of an interactive web application designed to bridge the communication gap between people with hearing disabilities and the digital environment. It uses computer vision models to instantly detect and translate hand gestures from the sign language alphabet into text via the device's camera.",
-      technologies: ["MediaPipe (Hands)", "React", "Vite", "TypeScript", "HTML5 Canvas", "Tailwind CSS", "ONNX Runtime Web", "FastAPI", "MongoDB", "Scikit-learn", "Uvicorn" ],
-      githubUrl: "https://github.com/samiluffy26/HandsMachines",
-      image: "/HandsMachine.png",
-    },
-    {
-      title: "FullStack Restaurant Management",
-      description:
-        "A full-stack restaurant management system with menu, orders, and inventory control.",
-      technologies: ["Zustand", "React", "Vite", "TypeScript", "React Router DOM", "Tailwind CSS", "Axios", "Node.js & Express", "MongoDB", "Socket.io", "JWT", "Bcrypt", "Multer", "Helmet & Morgan", "Zod" ],
-      githubUrl: "https://github.com/samiluffy26/Proyecto-fullstackPractica",
-      image: "/RestaurantFS.png",
-    },
-    {
-      title: "First Full Stack Project",
-      description:
-        "Full-stack blog with authentication, user management, CRUD functionality for posts and comments, and an admin panel for content moderation. It implements security with JWT, validation with Zod, and file handling with Multer.",
-      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React" ],
-      githubUrl: "https://github.com/samiluffy26/Blog-PrimerProyecto",
-      image: "/PrimerBlog.png",
-    },
-    {
-      title: "CJ-Informa",
-      description:
-        "Full-stack school newspaper with authentication, user management, CRUD functionality for posts and comments, and an administration panel for content moderation. Includes a landing page to display relevant information about the newspaper and its mission.",
-      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Cloudinary", "Vite" ],
-      liveUrl: "https://cj.informa.samueltech.dev",
-      image: "/cj-informa.png",
-    },
-    {
-      title: "Blog Dev",
-      description:
-        "A blog for developers to share knowledge, experiences, and resources related to software development. The blog covers a wide range of topics, from tutorials and how-tos to analyses of technological trends and interviews with industry experts. With a focus on community, the blog encourages active reader participation through comments, discussions, and content contributions.",
-      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Cloudinary", "Vite" ],
-      image: "/BlogDev.png",
-      comingSoon: true,
-    },
-    {
-      title: "EduNova",
-      description:
-        "EduNova is an educational platform developed during the Hackathon for the Rights of the Dominican Ombudsman. It is designed to help schools identify students at risk of dropping out early, using data such as attendance, academic performance, behavior, grade repetition, and other important factors. Its goal is to enable teachers, counselors, and administrators to make better decisions, monitor each case, and implement support measures before the problem escalates. In short, EduNova aims to reduce school dropout rates and strengthen student retention within the education system.",
-      technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Nodemon", "React", "Sqlite", "Next.js", "FastAPI" ],
-      image: "/EduNova.png",
-      liveUrl: "https://edunova.sanxoft.lat",
-      
-    },
-  ];
+  const { t, locale } = useLanguage();
+  const projects = getProjects(locale);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
@@ -281,7 +71,7 @@ export default function ProjectsCarousel() {
                       className="w-full h-full object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
+
                     {currentProject.featured && (
                       <motion.div
                         initial={{ scale: 0 }}
@@ -323,12 +113,12 @@ export default function ProjectsCarousel() {
                       )}
                       {currentProject.isPrivate && (
                         <div className="p-3 bg-red-500/20 backdrop-blur-md rounded-full border border-red-500/50">
-                          <span className="text-red-400 text-sm font-medium">Private</span>
+                          <span className="text-red-400 text-sm font-medium">{t.projects.private}</span>
                         </div>
                       )}
                       {currentProject.comingSoon && (
                         <div className="p-3 bg-yellow-500/20 backdrop-blur-md rounded-full border border-yellow-500/50">
-                          <span className="text-yellow-400 text-sm font-medium">Coming Soon</span>
+                          <span className="text-yellow-400 text-sm font-medium">{t.projects.comingSoon}</span>
                         </div>
                       )}
                     </div>
@@ -386,7 +176,7 @@ export default function ProjectsCarousel() {
                         className="flex"
                       >
                         <Badge className="bg-red-500/20 text-red-400 border-red-500/50">
-                          Private
+                          {t.projects.private}
                         </Badge>
                       </motion.div>
                     )}
@@ -399,7 +189,7 @@ export default function ProjectsCarousel() {
                         className="flex"
                       >
                         <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/50">
-                          Coming Soon
+                          {t.projects.comingSoon}
                         </Badge>
                       </motion.div>
                     )}
@@ -420,7 +210,7 @@ export default function ProjectsCarousel() {
                           className="px-6 py-3 bg-white/5 border border-white/20 rounded-lg text-white hover:bg-white/10 transition-all flex items-center gap-2"
                         >
                           <Github size={20} />
-                          Código
+                          {t.projects.code}
                         </motion.a>
                       )}
                       {currentProject.liveUrl && !currentProject.isPrivate && !currentProject.comingSoon && (
@@ -433,7 +223,7 @@ export default function ProjectsCarousel() {
                           className="px-6 py-3 bg-gradient-to-r from-[#10B981] to-[#059669] rounded-lg text-black hover:shadow-lg hover:shadow-[#10B981]/50 transition-all flex items-center gap-2"
                         >
                           <ExternalLink size={20} />
-                          Ver Demo
+                          {t.projects.demo}
                         </motion.a>
                       )}
                     </motion.div>
@@ -472,11 +262,10 @@ export default function ProjectsCarousel() {
                 onClick={() => setCurrentIndex(index)}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                className={`h-2 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "w-8 bg-gradient-to-r from-[#10B981] to-[#6D28D9]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
+                className={`h-2 rounded-full transition-all ${index === currentIndex
+                  ? "w-8 bg-gradient-to-r from-[#10B981] to-[#6D28D9]"
+                  : "w-2 bg-white/20 hover:bg-white/40"
+                  }`}
                 aria-label={`Go to project ${index + 1}`}
               />
             ))}
