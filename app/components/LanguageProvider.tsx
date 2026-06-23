@@ -19,9 +19,9 @@ const translations = {
       available: "Available for work",
       greeting: "Hi, I'm Samuel Isaias Guance Santi",
       titlePrimary: "Fullstack Developer",
-      titleSecondary: "& Project Manager",
+      titleSecondary: "Data Scientist & PM",
       description:
-        "I am a junior fullstack developer and Project Manager of the EduVisor project, a web platform for the Ministry of Education. Specialized in building scalable solutions with React, Node.js, and .NET.",
+        "Self-taught developer since age 12 with 100+ courses completed. I build scalable fullstack applications and apply Data Science & Machine Learning to solve real-world problems. Currently Project Manager at On The Clock Transportation and creator of projects like TribunalIQ, Dalia, and EduNova.",
       viewProjects: "View Projects",
       contact: "Contact",
       downloadCV: "Download CV",
@@ -32,7 +32,7 @@ const translations = {
     about: {
       title: "About me",
       paragraph:
-        "I am a junior fullstack developer and Project Manager of the EduVisor project, a web platform for the Ministry of Education that enables educational technicians to register school visits with photos, reports, and deadlines, eliminating manual processes and ensuring accurate information. I handle backend and database implementation with scalable and secure systems.",
+        "I'm an 18-year-old self-taught developer who started learning software development at age 12 on Udemy in 2020, beginning with HTML, CSS, and JavaScript. Over the years I expanded into React, Node.js, .NET, and databases like MongoDB and PostgreSQL. In 2026 I dove into Data Science, Machine Learning, and AI — applying them in real projects like TribunalIQ (legal tech analytics) and Dalia (intelligent task organization). With 100+ courses completed, I'm a natural leader, recently graduated, and about to study Data Science Engineering at university. Currently I serve as Project Manager at On The Clock Transportation.",
       features: [
         {
           title: "Frontend Development",
@@ -40,11 +40,15 @@ const translations = {
         },
         {
           title: "Backend & Database",
-          description: "Node.js, .NET, MongoDB, SQL Server, Entity Framework",
+          description: "Node.js, .NET, MongoDB, PostgreSQL, Prisma, Entity Framework",
+        },
+        {
+          title: "Data Science & AI",
+          description: "Python, Pandas, Scikit-learn, FastAPI, Machine Learning",
         },
         {
           title: "Project Management",
-          description: "Leading the EduVisor project for the Ministry of Education",
+          description: "PM at On The Clock Transportation & EduVisor for the Ministry of Education",
         },
       ],
     },
@@ -105,6 +109,7 @@ const translations = {
         ecommerce: "E-commerce",
         uiUxDesign: "UI/UX Design",
         apiBackend: "API / Backend",
+        dataScience: "Data Science & AI",
         consulting: "Consulting",
         maintenance: "Maintenance",
         other: "Other",
@@ -141,9 +146,9 @@ const translations = {
       available: "Disponible para trabajar",
       greeting: "Hola, soy Samuel Isaias Guance Santi",
       titlePrimary: "Desarrollador Fullstack",
-      titleSecondary: "& Project Manager",
+      titleSecondary: "Data Scientist & PM",
       description:
-        "Soy un desarrollador fullstack junior y Project Manager del proyecto EduVisor, una plataforma web para el Ministerio de Educación. Especializado en construir soluciones escalables con React, Node.js y .NET.",
+        "Desarrollador autodidacta desde los 12 años con más de 100 cursos completados. Construyo aplicaciones fullstack escalables y aplico Ciencia de Datos y Machine Learning para resolver problemas reales. Actualmente Project Manager en On The Clock Transportation y creador de proyectos como TribunalIQ, Dalia y EduNova.",
       viewProjects: "Ver Proyectos",
       contact: "Contactar",
       downloadCV: "Descargar CV",
@@ -154,7 +159,7 @@ const translations = {
     about: {
       title: "Sobre mí",
       paragraph:
-        "Soy un desarrollador fullstack junior y Project Manager del proyecto EduVisor, una plataforma web para el Ministerio de Educación que permite a los técnicos educativos registrar visitas escolares con fotos, informes y plazos, eliminando procesos manuales y asegurando la precisión de la información. Me encargo de la implementación del backend y la base de datos con sistemas escalables y seguros.",
+        "Tengo 18 años y soy un desarrollador autodidacta que comenzó a estudiar desarrollo de software a los 12 años en Udemy en 2020, empezando con HTML, CSS y JavaScript. Con el tiempo me expandí a React, Node.js, .NET, y bases de datos como MongoDB y PostgreSQL. En 2026 me sumergí en la Ciencia de Datos, Machine Learning e IA — aplicándolos en proyectos reales como TribunalIQ (analítica legal tech) y Dalia (organización inteligente de tareas). Con más de 100 cursos completados, soy un líder nato, recién graduado, y a punto de estudiar Ingeniería en Ciencia de Datos en la universidad. Actualmente soy Project Manager en On The Clock Transportation.",
       features: [
         {
           title: "Desarrollo Frontend",
@@ -162,11 +167,15 @@ const translations = {
         },
         {
           title: "Backend y Base de Datos",
-          description: "Node.js, .NET, MongoDB, SQL Server, Entity Framework",
+          description: "Node.js, .NET, MongoDB, PostgreSQL, Prisma, Entity Framework",
+        },
+        {
+          title: "Ciencia de Datos & IA",
+          description: "Python, Pandas, Scikit-learn, FastAPI, Machine Learning",
         },
         {
           title: "Gestión de Proyectos",
-          description: "Liderando el proyecto EduVisor para el Ministerio de Educación",
+          description: "PM en On The Clock Transportation y EduVisor para el Ministerio de Educación",
         },
       ],
     },
@@ -227,6 +236,7 @@ const translations = {
         ecommerce: "E-commerce",
         uiUxDesign: "Diseño UI/UX",
         apiBackend: "API / Backend",
+        dataScience: "Ciencia de Datos & IA",
         consulting: "Consultoría",
         maintenance: "Mantenimiento",
         other: "Otro",

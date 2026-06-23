@@ -10,9 +10,10 @@ export default function Hero() {
   const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
   const codeLines = [
     "const developer = {",
-    "  name: 'Fullstack Dev',",
-    "  skills: ['React', 'Node.js', '.NET'],",
-    "  passion: 'Building the future'",
+    "  name: 'Samuel Guance',",
+    "  roles: ['Fullstack', 'Data Scientist'],",
+    "  stack: ['React', '.NET', 'Python'],",
+    "  passion: 'Building the future with AI'",
     "};",
   ];
 
@@ -232,7 +233,7 @@ export default function Hero() {
               transition={{ delay: 1.2 }}
               className="mt-12 flex flex-wrap gap-4"
             >
-              {["React", "Node.js", ".NET", "MongoDB", "Next.js"].map((tech, i) => (
+              {["React", "Node.js", ".NET", "Python", "Pandas", "Next.js"].map((tech, i) => (
                 <motion.div
                   key={tech}
                   initial={{ scale: 0, rotate: -180 }}

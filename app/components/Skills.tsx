@@ -32,6 +32,14 @@ export default function Skills() {
     "entity framework core",
     "asp.net core",
     "blazor",
+    "Python",
+    "Pandas",
+    "Scikit-learn",
+    "FastAPI",
+    "NumPy",
+    "Jupyter",
+    "PostgreSQL",
+    "Prisma",
   ];
 
   const favoriteSkills = [
@@ -44,6 +52,10 @@ export default function Skills() {
     "Asp.net",
     "entity framework",
     "blazor",
+    "Python",
+    "Pandas",
+    "Scikit-learn",
+    "FastAPI",
   ];
 
   const isFavorite = (skill: string) => {

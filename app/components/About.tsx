@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Database, Globe } from "lucide-react";
+import { Code2, Database, BrainCircuit, Globe } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 
 export default function About() {
@@ -9,7 +9,7 @@ export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const featureIcons = [Code2, Database, Globe];
+  const featureIcons = [Code2, Database, BrainCircuit, Globe];
   const features = t.about.features.map((feature, index) => ({
     icon: featureIcons[index] ?? Globe,
     ...feature,
@@ -46,7 +46,7 @@ export default function About() {
           />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
