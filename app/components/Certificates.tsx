@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
-import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ExternalLink, FileText, Image as ImageIcon, ZoomIn, Download, ChevronLeft, ChevronRight, FolderOpen } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useLanguage } from "@/components/LanguageProvider";
 
@@ -162,6 +162,101 @@ export default function Certificates() {
                             </div>
                         </div>
                     )}
+
+                    {/* Google Drive CTA Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="mt-12 max-w-2xl mx-auto"
+                    >
+                        <motion.a
+                            href="https://drive.google.com/drive/folders/1ejBsuayz2aCFjUgeRzSzYMAUZbP3N1RP?usp=sharing"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.02, y: -4 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-[#10B981]/50 transition-all duration-500"
+                        >
+                            {/* Animated scanning line */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-b from-transparent via-[#10B981]/10 to-transparent"
+                                animate={{ y: ["-100%", "200%"] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                                style={{ height: "30%" }}
+                            />
+
+                            {/* Corner accents */}
+                            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#10B981]/30 rounded-tl-2xl group-hover:border-[#10B981] transition-colors duration-300" />
+                            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#6D28D9]/30 rounded-tr-2xl group-hover:border-[#6D28D9] transition-colors duration-300" />
+                            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#6D28D9]/30 rounded-bl-2xl group-hover:border-[#6D28D9] transition-colors duration-300" />
+                            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#10B981]/30 rounded-br-2xl group-hover:border-[#10B981] transition-colors duration-300" />
+
+                            <div className="relative p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6">
+                                {/* Animated folder icon */}
+                                <div className="relative flex-shrink-0">
+                                    <motion.div
+                                        className="absolute inset-0 bg-gradient-to-br from-[#10B981]/30 to-[#6D28D9]/30 rounded-2xl blur-xl"
+                                        animate={{
+                                            scale: [1, 1.3, 1],
+                                            opacity: [0.5, 0.8, 0.5],
+                                        }}
+                                        transition={{ duration: 3, repeat: Infinity }}
+                                    />
+                                    <motion.div
+                                        className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#10B981] to-[#6D28D9] rounded-2xl flex items-center justify-center shadow-lg shadow-[#10B981]/20"
+                                        whileHover={{ rotate: [0, -5, 5, 0] }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        <FolderOpen size={36} className="text-white" />
+                                        {/* Badge count */}
+                                        <motion.div
+                                            className="absolute -top-2 -right-2 w-7 h-7 bg-[#10B981] rounded-full flex items-center justify-center text-[10px] font-bold text-black shadow-lg"
+                                            animate={{ scale: [1, 1.15, 1] }}
+                                            transition={{ duration: 2, repeat: Infinity }}
+                                        >
+                                            100+
+                                        </motion.div>
+                                    </motion.div>
+                                </div>
+
+                                {/* Text content */}
+                                <div className="text-center sm:text-left flex-1">
+                                    <h3 className="text-white text-lg sm:text-xl font-semibold mb-1 group-hover:text-[#10B981] transition-colors">
+                                        {locale === 'es' ? 'Explorar Todos los Certificados' : 'Explore All Certificates'}
+                                    </h3>
+                                    <p className="text-white/50 text-sm sm:text-base mb-3">
+                                        {locale === 'es'
+                                            ? 'Más de 100 cursos completados desde 2020 — Desarrollo Web, Data Science, Machine Learning y más'
+                                            : '100+ courses completed since 2020 — Web Development, Data Science, Machine Learning & more'}
+                                    </p>
+                                    <div className="inline-flex items-center gap-2 text-[#10B981] text-sm font-medium">
+                                        <span className="flex items-center gap-1.5">
+                                            <svg viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+                                                <path d="M6.6 66.85L15.55 78l36.45-28.45L87.3 78l-18.6-33.15L87.3 11.7H69l-17 33.15L34.55 11.7H16.6l18.6 33.15z" fill="currentColor" />
+                                            </svg>
+                                            Google Drive
+                                        </span>
+                                        <motion.span
+                                            animate={{ x: [0, 4, 0] }}
+                                            transition={{ duration: 1.5, repeat: Infinity }}
+                                        >
+                                            →
+                                        </motion.span>
+                                    </div>
+                                </div>
+
+                                {/* Arrow icon */}
+                                <motion.div
+                                    className="hidden sm:flex items-center justify-center w-12 h-12 rounded-full border border-white/10 group-hover:border-[#10B981]/50 group-hover:bg-[#10B981]/10 transition-all duration-300 flex-shrink-0"
+                                    whileHover={{ scale: 1.1 }}
+                                >
+                                    <ExternalLink size={20} className="text-white/40 group-hover:text-[#10B981] transition-colors" />
+                                </motion.div>
+                            </div>
+                        </motion.a>
+                    </motion.div>
                 </div>
             </div>
 
